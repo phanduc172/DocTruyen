@@ -1,3 +1,6 @@
+<%@page import="bean.httruyenbean"%>
+<%@page import="bean.tacgiabean"%>
+<%@page import="bean.truyenbean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="bean.theloaibean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -92,11 +95,11 @@
     <div class="main">
         <div class="container">
             <div class="row">
-                <div class="col-3 me-2 border border-dark">
-                    <h5 class="text-center">Thể loại truyện</h5>
+                <div class="theloai bg-light col-3 me-2">
+                    <h5 class="text-center mt-2">Thể loại truyện</h5>
                         <ul class="px-3 theloai-items" style="list-style: none;">
 							<%for(theloaibean theloai: dstheloai) {%>
-								<li>
+								<li class="mb-2">
 									<i class="bi bi-tags-fill"></i>
 									<a class="text-decoration-none" href="TheLoaiController?mtl=<%=theloai.getMatheloai()%>">
 										<%=theloai.getTentheloai()%>
@@ -105,51 +108,28 @@
 							<%}%>
                         </ul>
                 </div>
-                <div class="col text-center border border-dark">
-                    <h5>Danh sách truyện</h5>
-                    <ul class="row book-items" style="list-style: none;">
-                        <li class="book-item col-4">
-                            <img class="book-image" src="img-truyen/1.jpg" alt="Ảnh truyện 1">
-                            <div>
-                                <a href="#"><h5>Tên truyện 1</h5></a>
-                                <p>Tác giả: Tác giả truyện 1</p>
-                            </div>
-                        </li>
-                        <li class="book-item col-4">
-                            <img class="book-image" src="img-truyen/2.jpg" alt="Ảnh truyện 2">
-                            <div>
-                                <a href="#"><h5>Tên truyện 2</h5></a>
-                                <p>Tác giả: Tác giả truyện 2</p>
-                            </div>
-                        </li>
-                        <li class="book-item col-4">
-                            <img class="book-image" src="img-truyen/3.jpg" alt="Ảnh truyện 3">
-                            <div>
-                                <a href="#"><h5>Tên truyện 3</h5></a>
-                                <p>Tác giả: Tác giả truyện 3</p>
-                            </div>
-                        </li>
-                        <li class="book-item col-4">
-                            <img class="book-image" src="img-truyen/1.jpg" alt="Ảnh truyện 1">
-                            <div>
-                                <a href="#"><h5>Tên truyện 1</h5></a>
-                                <p>Tác giả: Tác giả truyện 1</p>
-                            </div>
-                        </li>
-                        <li class="book-item col-4">
-                            <img class="book-image" src="img-truyen/2.jpg" alt="Ảnh truyện 2">
-                            <div>
-                                <a href="#"><h5>Tên truyện 2</h5></a>
-                                <p>Tác giả: Tác giả truyện 2</p>
-                            </div>
-                        </li>
-                        <li class="book-item col-4">
-                            <img class="book-image" src="img-truyen/3.jpg" alt="Ảnh truyện 3">
-                            <div>
-                                <a href="#"><h5>Tên truyện 3</h5></a>
-                                <p>Tác giả: Tác giả truyện 3</p>
-                            </div>
-                        </li>
+                <div class="noidung bg-light col-8 text-center">
+                    <h5 class="text-center mt-2">Danh sách truyện</h5>
+                    <ul class="row truyen-items" style="list-style: none;">
+                    	<%
+			            ArrayList<httruyenbean> dshttruyen = (ArrayList<httruyenbean>) request.getAttribute("dshttruyen");
+			            if (dshttruyen != null) {
+			                for (httruyenbean truyen : dshttruyen) {
+			       		%>
+				        <li class="col-4 truyen-item mb-1">
+				            <img class="mt-1 truyen-img" src="<%= truyen.getAnh() %>" alt="Ảnh truyện">
+				            <div>
+				                <a href="#">
+				                    <h6><%= truyen.getTentruyen() %></h6>
+				                </a>
+				                <p>Tác giả: <%= truyen.getTentacgia() %></p>
+			                 	<p>Thể loại: <%= truyen.getTentheloai() %></p>
+				            </div>
+				        </li>
+				        <%}
+				        }%>
+
+
                     </ul>
                 </div>
             </div>

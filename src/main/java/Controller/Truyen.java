@@ -10,20 +10,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.httruyenbean;
 import bean.theloaibean;
+import bean.truyenbean;
+import bo.httruyenbo;
 import bo.theloaibo;
+import bo.truyenbo;
 
 /**
  * Servlet implementation class TheLoaiController
  */
 @WebServlet("/TheLoaiController")
-public class TheLoaiController extends HttpServlet {
+public class Truyen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TheLoaiController() {
+    public Truyen() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,12 +40,20 @@ public class TheLoaiController extends HttpServlet {
 		try {
 			response.setCharacterEncoding("utf-8");
 			request.setCharacterEncoding("utf-8");
+
 			String mtl = request.getParameter("mtl");
-			// Sai loaibo lấy về dsloai
+			String mt = request.getParameter("mt");
+
 			theloaibo tlbo = new theloaibo();
 			ArrayList<theloaibean> dstheloai = tlbo.gettheloai();
+			truyenbo tbo = new truyenbo();
+			ArrayList<truyenbean> dstruyen = tbo.gettruyen();
+			httruyenbo httbo = new httruyenbo();
+			ArrayList<httruyenbean> dshttruyen = httbo.getHTTruỵen();
 
 			request.setAttribute("dstheloai", dstheloai);
+			request.setAttribute("dstruyen", dstruyen);
+			request.setAttribute("dshttruyen", dshttruyen);
 			RequestDispatcher rd = request.getRequestDispatcher("TrangChu.jsp");
 			rd.forward(request, response);
 		} catch (Exception e) {
