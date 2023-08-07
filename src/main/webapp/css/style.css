@@ -1,0 +1,17 @@
+@charset "ISO-8859-1";
+
+.logo-pd {
+	width: 40px;
+	height: 40px;
+}
+
+.book-items {
+	padding: 0;
+}
+
+.book-image {
+	width: 200px;
+    height: fit-content;
+}
+
+
