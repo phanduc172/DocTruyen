@@ -1,7 +1,6 @@
 package Controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,23 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.httruyenbean;
-import bean.theloaibean;
-import bean.truyenbean;
 import bo.httruyenbo;
-import bo.theloaibo;
-import bo.truyenbo;
 
 /**
- * Servlet implementation class TheLoaiController
+ * Servlet implementation class ChiTietTruyenController
  */
-@WebServlet("/TruyenController")
-public class Truyen extends HttpServlet {
+@WebServlet("/ChiTietTruyenController")
+public class ChiTietTruyenController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Truyen() {
+    public ChiTietTruyenController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,32 +33,23 @@ public class Truyen extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
-			response.setCharacterEncoding("utf-8");
-			request.setCharacterEncoding("utf-8");
+			// Lấy mã truyện từ parameter
+			String maTruyenStr = request.getParameter("matruyen");
+			long maTruyen = 0;
 
-			String key = request.getParameter("txttim");
-			String mtlSt = request.getParameter("mtl");
-	        long mtl = 0;
-	        if (mtlSt != null && !mtlSt.isEmpty()) {
-	            mtl = Long.parseLong(mtlSt);
-	        }
-			theloaibo tlbo = new theloaibo();
-			ArrayList<theloaibean> dstheloai = tlbo.gettheloai();
-			truyenbo tbo = new truyenbo();
-			ArrayList<truyenbean> dstruyen = tbo.gettruyen();
+			// Kiểm tra và chuyển đổi mã truyện từ chuỗi sang số nguyên
+			if (maTruyenStr != null && !maTruyenStr.isEmpty()) {
+			    maTruyen = Long.parseLong(maTruyenStr);
+			}
+
 			httruyenbo httbo = new httruyenbo();
-			ArrayList<httruyenbean> dshttruyen = httbo.getHTTruyen();
+			httruyenbean truyen = httbo.getTruyenByMaTruyen(maTruyen);
 
-			if(mtl!=0) //Chọn tên loại
-				dshttruyen =httbo.timTheLoai(mtl);
-			else
-			if(key!=null)
-				dshttruyen =httbo.timKiem(key);
+			// Đặt thông tin truyện trong thuộc tính của request
+			request.setAttribute("truyen", truyen);
 
-			request.setAttribute("dstheloai", dstheloai);
-			request.setAttribute("dstruyen", dstruyen);
-			request.setAttribute("dshttruyen", dshttruyen);
-			RequestDispatcher rd = request.getRequestDispatcher("TrangChu.jsp");
+			// Chuyển hướng đến trang NoiDungTruyen.jsp để hiển thị chi tiết truyện
+			RequestDispatcher rd = request.getRequestDispatcher("NoiDungTruyen.jsp");
 			rd.forward(request, response);
 		} catch (Exception e) {
 			// TODO: handle exception

@@ -27,8 +27,8 @@ public class truyendao {
 			long matruyen = rs.getLong("matruyen");
 			String tentruyen = rs.getString("tentruyen");
 			String anh = rs.getString("anh");
-			String noidung = rs.getString("noidung");
 			String mota = rs.getString("mota");
+			String noidung = rs.getString("noidung");
 			long matacgia = rs.getLong("matacgia");
 			long matheloai = rs.getLong("matheloai");
 			ds.add(new truyenbean(matruyen, tentruyen, anh, noidung, mota, matacgia, matheloai));

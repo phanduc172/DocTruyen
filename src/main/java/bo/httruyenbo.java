@@ -3,10 +3,9 @@ package bo;
 import java.util.ArrayList;
 
 
+
 import bean.httruyenbean;
-import bean.truyenbean;
 import dao.httruyendao;
-import dao.truyendao;
 
 public class httruyenbo {
 	httruyendao httdao = new httruyendao();
@@ -40,5 +39,17 @@ public class httruyenbo {
 		public boolean isSearch(ArrayList<httruyenbean> dshttruyen) {
 		    return dshttruyen.isEmpty();
 		}
+
+		public httruyenbean getTruyenByMaTruyen(long maTruyen) {
+		    try {
+		        // Lấy thông tin truyện từ DAO dựa trên mã truyện
+		        httruyenbean truyen = httdao.getTruyenByMaTruyen(maTruyen);
+		        return truyen;
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        return null;
+		    }
+		}
+
 
 }

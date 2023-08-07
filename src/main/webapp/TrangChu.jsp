@@ -20,12 +20,12 @@
 
     <nav class="navbar navbar-expand-md navbar-light bg-light fw-bold mb-3">
         <div class="container-fluid">
-            <img class="logo-pd" alt="" src="img-truyen/logo-pd.png">
+			<a href="TruyenController"><img class="logo-pd" alt="" src="img-truyen/logo-pd.png"></a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                <div class="navbar-nav gap-4">
+                <div class="navbar-nav">
                     <a href="#" class="nav-item nav-link active">Trang chủ</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Thể loại</a>
@@ -119,9 +119,10 @@
 				   		<li class="col-4 truyen-item mb-1">
 				            <img class="my-1 truyen-img" src="<%= truyen.getAnh() %>" alt="Ảnh truyện">
 				            <div>
-				                <a href="#" class="text-decoration-none">
-				                    <h6><%= truyen.getTentruyen() %></h6>
-				                </a>
+				                <a href="ChiTietTruyenController?matruyen=<%= truyen.getMatruyen()%>" class="text-decoration-none">
+								    <h6 class="mt-1"><%= truyen.getTentruyen() %></h6>
+								</a>
+
 				                <p>Tác giả: <%= truyen.getTentacgia() %></p>
 			                 	<p>Thể loại: <%= truyen.getTentheloai() %></p>
 				            </div>
