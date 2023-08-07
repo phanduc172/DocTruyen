@@ -38,7 +38,7 @@
 								<%for(theloaibean theloai: dstheloai) {%>
 									<li class="py-2">
 										<i class="bi bi-tags-fill"></i>
-										<a class="text-decoration-none" href="TheLoaiController?mtl=<%=theloai.getMatheloai()%>">
+										<a class="text-decoration-none" href="TruyenController?mtl=<%=theloai.getMatheloai()%>">
 											<%=theloai.getTentheloai()%>
 										</a>
 									</li>
@@ -50,8 +50,8 @@
                 </div>
                 <form class="d-flex">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Tìm truyện,tác giả">
-                        <button type="button" class="btn btn-secondary"><i class="bi-search"></i></button>
+                        <input name="txttim" type="text" class="form-control" placeholder="Tìm truyện,tác giả">
+                        <button name="but1" type="submit" class="btn btn-secondary"><i class="bi-search"></i></button>
                     </div>
                 </form>
                 <div class="navbar-nav">
@@ -101,7 +101,7 @@
 							<%for(theloaibean theloai: dstheloai) {%>
 								<li class="mb-2">
 									<i class="bi bi-tags-fill"></i>
-									<a class="text-decoration-none" href="TheLoaiController?mtl=<%=theloai.getMatheloai()%>">
+									<a class="text-decoration-none" href="TruyenController?mtl=<%=theloai.getMatheloai()%>">
 										<%=theloai.getTentheloai()%>
 									</a>
 								</li>
@@ -111,26 +111,28 @@
                 <div class="noidung bg-light col-8 text-center">
                     <h5 class="text-center mt-2">Danh sách truyện</h5>
                     <ul class="row truyen-items" style="list-style: none;">
-                    	<%
-			            ArrayList<httruyenbean> dshttruyen = (ArrayList<httruyenbean>) request.getAttribute("dshttruyen");
-			            if (dshttruyen != null) {
-			                for (httruyenbean truyen : dshttruyen) {
-			       		%>
-				        <li class="col-4 truyen-item mb-1">
-				            <img class="mt-1 truyen-img" src="<%= truyen.getAnh() %>" alt="Ảnh truyện">
+				    <%
+				    ArrayList<httruyenbean> dshttruyen = (ArrayList<httruyenbean>) request.getAttribute("dshttruyen");
+				    if (dshttruyen != null && !dshttruyen.isEmpty()) {
+				        for (httruyenbean truyen : dshttruyen) {
+				    %>
+				   		<li class="col-4 truyen-item mb-1">
+				            <img class="my-1 truyen-img" src="<%= truyen.getAnh() %>" alt="Ảnh truyện">
 				            <div>
-				                <a href="#">
+				                <a href="#" class="text-decoration-none">
 				                    <h6><%= truyen.getTentruyen() %></h6>
 				                </a>
 				                <p>Tác giả: <%= truyen.getTentacgia() %></p>
 			                 	<p>Thể loại: <%= truyen.getTentheloai() %></p>
 				            </div>
 				        </li>
-				        <%}
-				        }%>
-
-
-                    </ul>
+				    <% } %>
+				    <% } else {	%>
+				  	  <li class="text-center">
+				  	  <h5 class="text-danger mt-5">Không tìm thấy nội dung tìm kiếm</h5>
+				  	  </li>
+				    <% } %>
+				</ul>
                 </div>
             </div>
         </div>

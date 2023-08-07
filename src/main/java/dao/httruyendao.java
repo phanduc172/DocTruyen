@@ -28,7 +28,8 @@ public class httruyendao {
 			String tentruyen = rs.getString("tentruyen");
 			String tentheloai = rs.getString("tentheloai");
 			String tentacgia = rs.getString("tentacgia");
-			ds.add(new httruyenbean(anh, tentruyen, tentheloai, tentacgia));
+			long matheloai = rs.getLong("matheloai");
+			ds.add(new httruyenbean(anh, tentruyen, tentheloai, tentacgia,matheloai));
 		}
 		rs.close();
 		kn.cn.close();

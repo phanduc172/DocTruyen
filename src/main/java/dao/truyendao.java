@@ -1,10 +1,10 @@
 package dao;
 
-import java.sql.PreparedStatement;
+import java.sql.PreparedStatement
+;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import bean.theloaibean;
 import bean.truyenbean;
 
 public class truyendao {

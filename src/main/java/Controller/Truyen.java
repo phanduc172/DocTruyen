@@ -20,7 +20,7 @@ import bo.truyenbo;
 /**
  * Servlet implementation class TheLoaiController
  */
-@WebServlet("/TheLoaiController")
+@WebServlet("/TruyenController")
 public class Truyen extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -41,15 +41,24 @@ public class Truyen extends HttpServlet {
 			response.setCharacterEncoding("utf-8");
 			request.setCharacterEncoding("utf-8");
 
-			String mtl = request.getParameter("mtl");
-			String mt = request.getParameter("mt");
-
+			String key = request.getParameter("txttim");
+			String mtlSt = request.getParameter("mtl");
+	        long mtl = 0;
+	        if (mtlSt != null && !mtlSt.isEmpty()) {
+	            mtl = Long.parseLong(mtlSt);
+	        }
 			theloaibo tlbo = new theloaibo();
 			ArrayList<theloaibean> dstheloai = tlbo.gettheloai();
 			truyenbo tbo = new truyenbo();
 			ArrayList<truyenbean> dstruyen = tbo.gettruyen();
 			httruyenbo httbo = new httruyenbo();
-			ArrayList<httruyenbean> dshttruyen = httbo.getHTTruỵen();
+			ArrayList<httruyenbean> dshttruyen = httbo.getHTTruyen();
+
+			if(mtl!=0) //Chọn tên loại
+				dshttruyen =httbo.timTheLoai(mtl);
+			else
+			if(key!=null)
+				dshttruyen =httbo.timKiem(key);
 
 			request.setAttribute("dstheloai", dstheloai);
 			request.setAttribute("dstruyen", dstruyen);

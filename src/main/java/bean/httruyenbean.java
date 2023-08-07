@@ -5,6 +5,7 @@ public class httruyenbean {
 	private String tentruyen;
 	private String tentheloai;
 	private String tentacgia;
+	private long matheloai;
 	public httruyenbean() {
 		super();
 	}
@@ -14,6 +15,20 @@ public class httruyenbean {
 		this.tentruyen = tentruyen;
 		this.tentheloai = tentheloai;
 		this.tentacgia = tentacgia;
+	}
+	public httruyenbean(String anh, String tentruyen, String tentheloai, String tentacgia, long matheloai) {
+		super();
+		this.anh = anh;
+		this.tentruyen = tentruyen;
+		this.tentheloai = tentheloai;
+		this.tentacgia = tentacgia;
+		this.matheloai = matheloai;
+	}
+	public long getMatheloai() {
+		return matheloai;
+	}
+	public void setMatheloai(long matheloai) {
+		this.matheloai = matheloai;
 	}
 	public String getAnh() {
 		return anh;
