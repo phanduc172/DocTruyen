@@ -72,4 +72,5 @@ public class httruyenbean {
 	public void setMatheloai(long matheloai) {
 		this.matheloai = matheloai;
 	}
+
 }

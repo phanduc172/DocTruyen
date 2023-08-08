@@ -34,20 +34,12 @@ public class ChiTietTruyenController extends HttpServlet {
 		// TODO Auto-generated method stub
 		try {
 			// Lấy mã truyện từ parameter
-			String maTruyenStr = request.getParameter("matruyen");
-			long maTruyen = 0;
-
-			// Kiểm tra và chuyển đổi mã truyện từ chuỗi sang số nguyên
-			if (maTruyenStr != null && !maTruyenStr.isEmpty()) {
-			    maTruyen = Long.parseLong(maTruyenStr);
-			}
-
-			httruyenbo httbo = new httruyenbo();
-			httruyenbean truyen = httbo.getTruyenByMaTruyen(maTruyen);
+			long matruyen = Long.parseLong(request.getParameter("mt")); // Lấy mã truyện từ parameter
+		    httruyenbo httbo = new httruyenbo();
+		    httruyenbean truyen = httbo.getTruyenByMaTruyen(matruyen);
 
 			// Đặt thông tin truyện trong thuộc tính của request
 			request.setAttribute("truyen", truyen);
-
 			// Chuyển hướng đến trang NoiDungTruyen.jsp để hiển thị chi tiết truyện
 			RequestDispatcher rd = request.getRequestDispatcher("NoiDungTruyen.jsp");
 			rd.forward(request, response);

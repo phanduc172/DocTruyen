@@ -18,6 +18,10 @@
     height: fit-content;
 }
 
+.txttruyen {
+	text-align: justify;
+}
+
 @media only screen and (max-width: 768px) {
 	.theloai {
 		display: none;

@@ -26,7 +26,7 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav">
-                    <a href="#" class="nav-item nav-link active">Trang chủ</a>
+                    <a href="TruyenController" class="nav-item nav-link active">Trang chủ</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Thể loại</a>
                         <div class="dropdown-menu" style="width: 200px;">
@@ -37,8 +37,8 @@
 								}%>
 								<%for(theloaibean theloai: dstheloai) {%>
 									<li class="py-2">
-										<i class="bi bi-tags-fill"></i>
-										<a class="text-decoration-none" href="TruyenController?mtl=<%=theloai.getMatheloai()%>">
+										<i class="bi bi-tags-fill text-secondary"></i>
+										<a class="text-decoration-none text-primary" href="TruyenController?mtl=<%=theloai.getMatheloai()%>">
 											<%=theloai.getTentheloai()%>
 										</a>
 									</li>
@@ -96,12 +96,12 @@
         <div class="container">
             <div class="row">
                 <div class="theloai bg-light col-3 me-2">
-                    <h5 class="text-center mt-2">Thể loại truyện</h5>
+                    <h5 class="text-danger fw-bold text-center mt-2">Thể loại truyện</h5>
                         <ul class="px-3 theloai-items" style="list-style: none;">
 							<%for(theloaibean theloai: dstheloai) {%>
-								<li class="mb-2">
-									<i class="bi bi-tags-fill"></i>
-									<a class="text-decoration-none" href="TruyenController?mtl=<%=theloai.getMatheloai()%>">
+								<li class="mb-2 p-1">
+									<i class="bi bi-tags-fill text-secondary"></i>
+									<a class="text-decoration-none text-primary" href="TruyenController?mtl=<%=theloai.getMatheloai()%>">
 										<%=theloai.getTentheloai()%>
 									</a>
 								</li>
@@ -109,20 +109,19 @@
                         </ul>
                 </div>
                 <div class="noidung bg-light col-8 text-center">
-                    <h5 class="text-center mt-2">Danh sách truyện</h5>
+                    <h5 class="text-danger fw-bold text-center mt-2">Danh sách truyện</h5>
                     <ul class="row truyen-items" style="list-style: none;">
 				    <%
-				    ArrayList<httruyenbean> dshttruyen = (ArrayList<httruyenbean>) request.getAttribute("dshttruyen");
+				    ArrayList<httruyenbean> dshttruyen = (ArrayList)request.getAttribute("dshttruyen");
 				    if (dshttruyen != null && !dshttruyen.isEmpty()) {
 				        for (httruyenbean truyen : dshttruyen) {
 				    %>
 				   		<li class="col-4 truyen-item mb-1">
 				            <img class="my-1 truyen-img" src="<%= truyen.getAnh() %>" alt="Ảnh truyện">
 				            <div>
-				                <a href="ChiTietTruyenController?matruyen=<%= truyen.getMatruyen()%>" class="text-decoration-none">
+				                <a href="ChiTietTruyenController?mt=<%=truyen.getMatruyen()%>" class="text-decoration-none">
 								    <h6 class="mt-1"><%= truyen.getTentruyen() %></h6>
 								</a>
-
 				                <p>Tác giả: <%= truyen.getTentacgia() %></p>
 			                 	<p>Thể loại: <%= truyen.getTentheloai() %></p>
 				            </div>

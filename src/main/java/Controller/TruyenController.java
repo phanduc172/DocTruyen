@@ -49,8 +49,7 @@ public class TruyenController extends HttpServlet {
 			}
 			theloaibo tlbo = new theloaibo();
 			ArrayList<theloaibean> dstheloai = tlbo.gettheloai();
-			truyenbo tbo = new truyenbo();
-			ArrayList<truyenbean> dstruyen = tbo.gettruyen();
+
 			httruyenbo httbo = new httruyenbo();
 			ArrayList<httruyenbean> dshttruyen = httbo.getHTTruyen();
 
@@ -59,9 +58,8 @@ public class TruyenController extends HttpServlet {
 			else
 			if(key!=null)
 				dshttruyen =httbo.timKiem(key);
-
+			System.out.println();
 			request.setAttribute("dstheloai", dstheloai);
-			request.setAttribute("dstruyen", dstruyen);
 			request.setAttribute("dshttruyen", dshttruyen);
 			RequestDispatcher rd = request.getRequestDispatcher("TrangChu.jsp");
 			rd.forward(request, response);

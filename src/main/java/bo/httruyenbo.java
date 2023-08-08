@@ -31,7 +31,7 @@ public class httruyenbo {
 			ArrayList<httruyenbean> tam = new ArrayList<httruyenbean>();
 			for (httruyenbean truyen : ds)
 				if(truyen.getTentacgia().toLowerCase().contains(key.toLowerCase()) ||
-						truyen.getTentacgia().toLowerCase().contains(key.toLowerCase()))
+						truyen.getTentruyen().toLowerCase().contains(key.toLowerCase()))
 					tam.add(truyen);
 			return tam;
 		}
@@ -40,16 +40,8 @@ public class httruyenbo {
 		    return dshttruyen.isEmpty();
 		}
 
-		public httruyenbean getTruyenByMaTruyen(long maTruyen) {
-		    try {
-		        // Lấy thông tin truyện từ DAO dựa trên mã truyện
-		        httruyenbean truyen = httdao.getTruyenByMaTruyen(maTruyen);
-		        return truyen;
-		    } catch (Exception e) {
-		        e.printStackTrace();
-		        return null;
-		    }
+		public httruyenbean getTruyenByMaTruyen(long mt) throws Exception {
+			return httdao.getTruyenByMaTruyen(mt);
 		}
-
 
 }

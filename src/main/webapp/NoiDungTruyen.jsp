@@ -5,8 +5,7 @@
 <%@page import="bean.truyenbean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="bean.theloaibean"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,8 +26,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                <div class="navbar-nav gap-4">
-                    <a href="#" class="nav-item nav-link active">Trang chủ</a>
+                <div class="navbar-nav">
+                    <a href="TruyenController" class="nav-item nav-link active">Trang chủ</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Thể loại</a>
                         <div class="dropdown-menu" style="width: 200px;">
@@ -51,7 +50,7 @@
                     </div>
                   <a href="#" class="nav-item nav-link">Đăng truyện</a>
                 </div>
-                <form class="d-flex">
+                <form action="TruyenController" class="d-flex" method="get">
                     <div class="input-group">
                         <input name="txttim" type="text" class="form-control" placeholder="Tìm truyện,tác giả">
                         <button name="but1" type="submit" class="btn btn-secondary"><i class="bi-search"></i></button>
@@ -95,37 +94,45 @@
             </div>
         </div>
     </nav>
+
     <div class="main">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-9 border border-dark">
-                    <h5 class="text-center mt-2">Chi tiết nội dung</h5>
-                    <div class="row justify-content-evenly">
-                        <div class="col-4 text-center border border-dark">
-						    <img class="truyen-img" src="<%= ((httruyenbean) request.getAttribute("truyen")).getAnh() %>" alt="Ảnh truyện">
-						    <div>
-						        <h5 class="mb-2"><%= ((httruyenbean) request.getAttribute("truyen")).getTentruyen() %></h5>
-						        <p>Tác giả: <%= ((httruyenbean) request.getAttribute("truyen")).getTentacgia() %></p>
-						        <p>Thể loại: <%= ((httruyenbean) request.getAttribute("truyen")).getTentheloai() %></p>
-						    </div>
-						</div>
-						<div class="col-7 border border-dark">
-					        <h6 class="text-center"><%=((httruyenbean) request.getAttribute("truyen")).getTentruyen()%></h6>
-					        <p>Mô tả: <%=((httruyenbean) request.getAttribute("truyen")).getMota()%></p>
-					        <p>Nội dung truyện: <%=((httruyenbean) request.getAttribute("truyen")).getNoidung()%></p>
+                <div class="col-9 bg-light">
+					<div class="row justify-content-evenly">
+                        <div class="col-4 text-center">
+					    <img class="truyen-img mt-2" src="<%= ((httruyenbean) request.getAttribute("truyen")).getAnh() %>" alt="Ảnh truyện">
+					    <div>
+					        <h5 class="my-2 text-danger fw-bold"><%= ((httruyenbean) request.getAttribute("truyen")).getTentruyen() %></h5>
+					        <p>Tác giả: <%= ((httruyenbean) request.getAttribute("truyen")).getTentacgia() %></p>
+					        <p>Thể loại: <%= ((httruyenbean) request.getAttribute("truyen")).getTentheloai() %></p>
+					        <p class="txttruyen">Mô tả: <%= ((httruyenbean) request.getAttribute("truyen")).getMota() %></p>
 					    </div>
+					</div>
+					<div class="bg-light col-7">
+					    <h5 class="text-center mt-2 text-danger fw-bold"><%= ((httruyenbean) request.getAttribute("truyen")).getTentruyen() %></h5>
+					    <p class="txttruyen"><%= ((httruyenbean) request.getAttribute("truyen")).getNoidung() %></p>
+					</div>
+
             		</div>
         		</div>
-    			<div class="col ms-2 text-center border border-dark">
-                 <h5 class="text-center mt-2">Truyện mới nhất</h5>
-                    <ul class="p-0" style="list-style: none;">
-                       <li>1</li>
-                       <li>1</li>
-                       <li>1</li>
-                       <li>1</li>
-                       <li>1</li>
-                    </ul>
-               </div>
+
+    			<div class="bg-light col ms-2 text-center">
+				    <h5 class="text-danger fw-bold text-center mt-2">Truyện mới nhất</h5>
+				    <ul class="p-0" style="list-style: none;">
+						<%	httruyenbo httruyen = new httruyenbo();
+ 							ArrayList<httruyenbean> ds = httruyen.getHTTruyen();
+ 							for(httruyenbean tbean : ds) {
+						%>
+							<li>
+								<a class="text-start text-decoration-none" href="ChiTietTruyenController?mt=<%= tbean.getMatruyen()%>" class="text-decoration-none">
+								    <h6 class="mt-1 text-primary"><i class="bi bi-tags-fill m-2 text-secondary"></i><%= tbean.getTentruyen()%></h6>
+								</a>
+							</li>
+						<%}%>
+				    </ul>
+				</div>
+
     </div>
 
 
