@@ -1,3 +1,4 @@
+<%@page import="bean.nguoidungbean"%>
 <%@page import="bo.theloaibo"%>
 <%@page import="bo.httruyenbo"%>
 <%@page import="bean.httruyenbean"%>
@@ -5,6 +6,7 @@
 <%@page import="bean.truyenbean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="bean.theloaibean"%>
+<%@page import="bean.nguoidungbean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +20,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-
+		<%
+        nguoidungbean nguoidung = (nguoidungbean) session.getAttribute("ktdn");
+		if(nguoidung==null) {
+			nguoidung = new nguoidungbean();
+			session.setAttribute("ktdn", nguoidung);
+		}
+   		%>
     <nav class="navbar navbar-expand-md navbar-light bg-light fw-bold mb-3">
         <div class="container-fluid">
         	<a href="TruyenController"><img class="logo-pd" alt="" src="img-truyen/logo-pd.png"></a>
@@ -56,11 +64,19 @@
                         <button name="but1" type="submit" class="btn btn-secondary"><i class="bi-search"></i></button>
                     </div>
                 </form>
-                <div class="navbar-nav">
-                        <button type="button" class="btn btn btn-light" data-bs-toggle="modal" data-bs-target="#myModal">
-				          <i class="bi bi-person-circle"></i> Thành viên
-				        </button>
-				    </div>
+               		<div class="navbar-nav">
+					    <button type="button" class="btn btn btn-light" data-bs-toggle="modal" data-bs-target="#myModal">
+					        <i class="bi bi-person-circle"></i>
+					        <%
+					        nguoidungbean nd = (nguoidungbean) session.getAttribute("ktdn");
+					        if (nguoidung == null) {
+					            out.print("Thành viên");
+					        } else {%>
+					            <li><span class="glyphicon glyphicon-log-in"></span> Xin chào: <%=nd.getHoten()%></a></li>
+					            <li><a href="DangXuatController"><span class="glyphicon glyphicon-log-in"></span> Đăng xuất </a></li>
+					        <%}%>
+				    	</button>
+					</div>
 				      <!-- The Modal -->
 				    <div class="modal" id="myModal">
 					    <div class="modal-dialog">

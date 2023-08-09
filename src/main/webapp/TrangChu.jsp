@@ -1,3 +1,4 @@
+<%@page import="bean.nguoidungbean"%>
 <%@page import="bean.httruyenbean"%>
 <%@page import="bean.tacgiabean"%>
 <%@page import="bean.truyenbean"%>
@@ -17,7 +18,20 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-
+		<%
+		    String tb = request.getParameter("tb");
+		    if (tb != null && tb.equals("DangNhapSai")) {
+		        // Sử dụng JavaScript để hiển thị alert
+		        out.println("<script>alert('Đăng nhập không thành công!');</script>");
+		    }
+		%>
+		<%
+        nguoidungbean nguoidung = (nguoidungbean) session.getAttribute("ktdn");
+		if(nguoidung==null) {
+			nguoidung = new nguoidungbean();
+			session.setAttribute("ktdn", nguoidung);
+		}
+   		%>
     <nav class="navbar navbar-expand-md navbar-light bg-light fw-bold mb-3">
         <div class="container-fluid">
 			<a href="TruyenController"><img class="logo-pd" alt="" src="img-truyen/logo-pd.png"></a>
@@ -54,44 +68,50 @@
                         <button name="but1" type="submit" class="btn btn-secondary"><i class="bi-search"></i></button>
                     </div>
                 </form>
-                <div class="navbar-nav">
-                        <button type="button" class="btn btn btn-light" data-bs-toggle="modal" data-bs-target="#myModal">
-				          <i class="bi bi-person-circle"></i> Thành viên
-				        </button>
-				    </div>
+
+			    <div class="navbar-nav">
+				<% if (session.getAttribute("dn") == null) { %>
+				    <button type="button" class="btn btn btn-light" data-bs-toggle="modal" data-bs-target="#myModal">
+				        <i class="bi bi-person-circle"></i> Thành viên
+				    </button>
+				<% } else { %>
+			        <li class="text-secondary me-2"><i class="bi bi-person-circle me-2"></i><%= nguoidung.getHoten() %></li>
+			        <a class="text-decoration-none text-danger" href="DangXuatController">Đăng xuất</a>
+				<% } %>
+				</div>
 				      <!-- The Modal -->
-				    <div class="modal" id="myModal">
-					    <div class="modal-dialog">
-					        <div class="modal-content">
+			    <div class="modal" id="myModal">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
 
-					        <!-- Modal Header -->
-					        <div class="modal-header">
-					            <h4 class="modal-title">Đăng nhập</h4>
-					            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-					        </div>
+				        <!-- Modal Header -->
+				        <div class="modal-header">
+				            <h4 class="modal-title">Đăng nhập</h4>
+				            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				        </div>
 
-					        <!-- Modal body -->
-					        <div class="modal-body">
-					            <form method="post" action="DangNhapController">
-					            <fieldset>
-					                <div class="form-group mb-3">
-					                	<input class="form-control" placeholder="Nhập tên người dùng" name="username" type="text">
-					                </div>
-					                <div class="form-group mb-3">
-					              	  <input class="form-control" placeholder="Nhập mật khẩu" name="password" type="password" value="">
-					                </div>
-					                <input class="btn btn-md btn btn-secondary btn-block" type="submit" value="Đăng nhập">
-					            </fieldset>
-					            </form>
-					        </div>
-					        </div>
-					    </div>
+				        <!-- Modal body -->
+				        <div class="modal-body">
+				            <form method="post" action="DangNhapController">
+				            <fieldset>
+				                <div class="form-group mb-3">
+				                	<input class="form-control" placeholder="Nhập tên người dùng" name="username" type="text">
+				                </div>
+				                <div class="form-group mb-3">
+				              	  <input class="form-control" placeholder="Nhập mật khẩu" name="password" type="password" value="">
+				                </div>
+				                <input class="btn btn-md btn btn-secondary btn-block" type="submit" value="Đăng nhập">
+				            </fieldset>
+				            </form>
+				        </div>
+				        </div>
 				    </div>
+			    </div>
 
-                </div>
-            </div>
-        </div>
-    </nav>
+			</div>
+		</div>
+   	</nav>
+
     <div class="main">
         <div class="container">
             <div class="row">
@@ -108,6 +128,7 @@
 							<%}%>
                         </ul>
                 </div>
+
                 <div class="noidung bg-light col-8 text-center">
                     <h5 class="text-danger fw-bold text-center mt-2">Danh sách truyện</h5>
                     <ul class="row truyen-items" style="list-style: none;">
@@ -134,6 +155,7 @@
 				    <% } %>
 				</ul>
                 </div>
+
             </div>
         </div>
     </div>
