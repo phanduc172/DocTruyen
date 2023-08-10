@@ -20,11 +20,20 @@
 <body>
 		<%
 		    String tb = request.getParameter("tb");
-		    if (tb != null && tb.equals("DangNhapSai")) {
-		        // Sử dụng JavaScript để hiển thị alert
-		        out.println("<script>alert('Đăng nhập không thành công!');</script>");
+		    if (tb != null) {
+		        if (tb.equals("DangNhapSai")) {
+		            // Sử dụng JavaScript để hiển thị alert
+		            out.println("<script>alert('Đăng nhập không thành công!');</script>");
+		        } else if (tb.equals("MaCaptchaSai")) {
+		            // Sử dụng JavaScript để hiển thị alert khi mã CAPTCHA sai
+		            out.println("<script>alert('Mã CAPTCHA không đúng!');</script>");
+		        } else if (tb.equals("ChuaNhapMaCaptcha")) {
+		            // Sử dụng JavaScript để hiển thị alert khi chưa nhập mã CAPTCHA
+		            out.println("<script>alert('Vui lòng nhập mã CAPTCHA!');</script>");
+		        }
 		    }
 		%>
+
 		<%
         nguoidungbean nguoidung = (nguoidungbean) session.getAttribute("ktdn");
 		if(nguoidung==null) {
@@ -100,6 +109,10 @@
 				                <div class="form-group mb-3">
 				              	  <input class="form-control" placeholder="Nhập mật khẩu" name="password" type="password" value="">
 				                </div>
+				                <div class="form-group mb-3">
+				              	  	<img src="simpleCaptcha.jpg" />
+				              	 	<input type="text" name="answer" placeholder="Nhập mã CAPTCHA"/><br>
+				                </div>
 				                <input class="btn btn-md btn btn-secondary btn-block" type="submit" value="Đăng nhập">
 				            </fieldset>
 				            </form>
@@ -129,7 +142,36 @@
                         </ul>
                 </div>
 
-                <div class="noidung bg-light col-8 text-center">
+                <div class="noidung bg-light col text-center">
+	              <div id="demo" class="carousel slide d-inline-block my-2" data-bs-ride="carousel">
+				  <!-- Indicators/dots -->
+				  <div class="carousel-indicators">
+				    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+				    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+				    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+				  </div>
+
+				  <!-- The slideshow/carousel -->
+				  <div class="carousel-inner">
+				    <div class="carousel-item active">
+				      <img src="img-truyen/ca1.jpg" alt="Los Angeles" class="d-block" style="width: 100%;">
+				    </div>
+				    <div class="carousel-item">
+				      <img src="img-truyen/ca2.jpg" alt="Chicago" class="d-block" style="width: 100%;">
+				    </div>
+				    <div class="carousel-item">
+				      <img src="img-truyen/ca3.jpg" alt="New York" class="d-block" style="width: 100%;">
+				    </div>
+				  </div>
+
+				  <!-- Left and right controls/icons -->
+				  <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+				    <span class="carousel-control-prev-icon"></span>
+				  </button>
+				  <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+				    <span class="carousel-control-next-icon"></span>
+				  </button>
+				</div>
                     <h5 class="text-danger fw-bold text-center mt-2">Danh sách truyện</h5>
                     <ul class="row truyen-items" style="list-style: none;">
 				    <%
@@ -137,7 +179,7 @@
 				    if (dshttruyen != null && !dshttruyen.isEmpty()) {
 				        for (httruyenbean truyen : dshttruyen) {
 				    %>
-				   		<li class="col-4 truyen-item mb-1">
+				   		<li class="col col-ms-6 col-md-6 col-lg-4 truyen-item mb-1">
 				            <img class="my-1 truyen-img" src="<%= truyen.getAnh() %>" alt="Ảnh truyện">
 				            <div>
 				                <a href="ChiTietTruyenController?mt=<%=truyen.getMatruyen()%>" class="text-decoration-none">

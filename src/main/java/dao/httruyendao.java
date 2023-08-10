@@ -13,7 +13,7 @@ public class httruyendao {
 		//Kết nối vào csdl
 		KetNoidao kn = new KetNoidao();
 		kn.KetNoi();
-		String sql = "select * from V_HTTruyen";
+		String sql = "select * from V_HTTruyen order by matruyen desc";
 		//B3 Tạo câu lệnh
 		PreparedStatement cmd = kn.cn.prepareStatement(sql);
 		//B4. Thực hiện câu lệnh

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.nguoidungbean;
 import bo.nguoidungbo;
+import nl.captcha.Captcha;
 
 /**
  * Servlet implementation class DangNhapController
@@ -33,30 +34,42 @@ public class DangNhapController extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-     	   	response.setCharacterEncoding("utf-8");
+            HttpSession session = request.getSession();
+            response.setCharacterEncoding("utf-8");
             request.setCharacterEncoding("utf-8");
- 	   		String user = request.getParameter("username");
- 	   		String pass = request.getParameter("password");
-    			nguoidungbo ndbo = new nguoidungbo();
- 	   		if(user==null && pass==null) {
- 	   			RequestDispatcher rd = request.getRequestDispatcher("TruyenController");
- 	   			rd.forward(request, response);
- 	   		} else {
- 	   			nguoidungbean nd = ndbo.ktdn(user, pass);
- 	   			if(nd !=null) {
- 	   				HttpSession session = request.getSession();
-	   				session.setAttribute("dn",user);
- 	   				session.setAttribute("ktdn", nd);
- 	   				response.sendRedirect("TruyenController");
- 	   			} else {
- 	   				response.sendRedirect("TruyenController?tb=DangNhapSai");
- 	   			}
- 	   		}
- 		} catch (Exception e) {
- 			// TODO: handle exception
- 			e.printStackTrace();
- 		}
- 	}
+
+            // Kiểm tra mã CAPTCHA
+            Captcha captcha = (Captcha) session.getAttribute(Captcha.NAME);
+            String captchaAnswer = request.getParameter("answer");
+
+            if (captchaAnswer == null || captchaAnswer.isEmpty()) {
+                // Mã CAPTCHA chưa được nhập, chuyển hướng với thông báo
+                response.sendRedirect("TruyenController?tb=ChuaNhapMaCaptcha");
+            } else if (captcha.isCorrect(captchaAnswer)) {
+                // Mã CAPTCHA đúng, thực hiện xử lý đăng nhập
+                String user = request.getParameter("username");
+                String pass = request.getParameter("password");
+
+                nguoidungbo ndbo = new nguoidungbo();
+                nguoidungbean nd = ndbo.ktdn(user, pass);
+
+                if (nd != null) {
+                    session.setAttribute("dn", user);
+                    session.setAttribute("ktdn", nd);
+                    response.sendRedirect("TruyenController");
+                } else {
+                    response.sendRedirect("TruyenController?tb=DangNhapSai");
+                }
+            } else {
+                response.sendRedirect("TruyenController?tb=MaCaptchaSai");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+    }
+
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

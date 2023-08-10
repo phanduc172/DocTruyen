@@ -1,5 +1,6 @@
 package Controller;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -9,13 +10,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.httruyenbean;
 import bean.theloaibean;
-import bean.truyenbean;
 import bo.httruyenbo;
 import bo.theloaibo;
-import bo.truyenbo;
+import nl.captcha.Captcha;
 
 /**
  * Servlet implementation class TheLoaiController
@@ -38,6 +39,7 @@ public class TruyenController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
+			HttpSession session=request.getSession();
 			response.setCharacterEncoding("utf-8");
 			request.setCharacterEncoding("utf-8");
 
@@ -58,7 +60,7 @@ public class TruyenController extends HttpServlet {
 			else
 			if(key!=null)
 				dshttruyen =httbo.timKiem(key);
-			System.out.println();
+
 			request.setAttribute("dstheloai", dstheloai);
 			request.setAttribute("dshttruyen", dshttruyen);
 			RequestDispatcher rd = request.getRequestDispatcher("TrangChu.jsp");

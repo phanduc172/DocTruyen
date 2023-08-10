@@ -21,6 +21,21 @@
 </head>
 <body>
 		<%
+		    String tb = request.getParameter("tb");
+		    if (tb != null) {
+		        if (tb.equals("DangNhapSai")) {
+		            // Sử dụng JavaScript để hiển thị alert
+		            out.println("<script>alert('Đăng nhập không thành công!');</script>");
+		        } else if (tb.equals("MaCaptchaSai")) {
+		            // Sử dụng JavaScript để hiển thị alert khi mã CAPTCHA sai
+		            out.println("<script>alert('Mã CAPTCHA không đúng!');</script>");
+		        } else if (tb.equals("ChuaNhapMaCaptcha")) {
+		            // Sử dụng JavaScript để hiển thị alert khi chưa nhập mã CAPTCHA
+		            out.println("<script>alert('Vui lòng nhập mã CAPTCHA!');</script>");
+		        }
+		    }
+		%>
+		<%
         nguoidungbean nguoidung = (nguoidungbean) session.getAttribute("ktdn");
 		if(nguoidung==null) {
 			nguoidung = new nguoidungbean();
@@ -65,19 +80,16 @@
                     </div>
                 </form>
                		<div class="navbar-nav">
-					    <button type="button" class="btn btn btn-light" data-bs-toggle="modal" data-bs-target="#myModal">
-					        <i class="bi bi-person-circle"></i>
-					        <%
-					        nguoidungbean nd = (nguoidungbean) session.getAttribute("ktdn");
-					        if (nguoidung == null) {
-					            out.print("Thành viên");
-					        } else {%>
-					            <li><span class="glyphicon glyphicon-log-in"></span> Xin chào: <%=nd.getHoten()%></a></li>
-					            <li><a href="DangXuatController"><span class="glyphicon glyphicon-log-in"></span> Đăng xuất </a></li>
-					        <%}%>
-				    	</button>
-					</div>
-				      <!-- The Modal -->
+						<% if (session.getAttribute("dn") == null) { %>
+						    <button type="button" class="btn btn btn-light" data-bs-toggle="modal" data-bs-target="#myModal">
+						        <i class="bi bi-person-circle"></i> Thành viên
+						    </button>
+						<% } else { %>
+					        <li class="text-secondary me-2"><i class="bi bi-person-circle me-2"></i><%= nguoidung.getHoten() %></li>
+					        <a class="text-decoration-none text-danger" href="DangXuatController">Đăng xuất</a>
+						<% } %>
+						</div>
+						      <!-- The Modal -->
 				    <div class="modal" id="myModal">
 					    <div class="modal-dialog">
 					        <div class="modal-content">
@@ -90,18 +102,22 @@
 
 					        <!-- Modal body -->
 					        <div class="modal-body">
-					            <form method="post" action="DangNhapController">
-					            <fieldset>
-					                <div class="form-group mb-3">
-					                	<input class="form-control" placeholder="Nhập tên người dùng" name="username" type="text">
-					                </div>
-					                <div class="form-group mb-3">
-					              	  <input class="form-control" placeholder="Nhập mật khẩu" name="password" type="password" value="">
-					                </div>
-					                <input class="btn btn-md btn btn-secondary btn-block" type="submit" value="Đăng nhập">
-					            </fieldset>
-					            </form>
-					        </div>
+				            <form method="post" action="DangNhapController">
+				            <fieldset>
+				                <div class="form-group mb-3">
+				                	<input class="form-control" placeholder="Nhập tên người dùng" name="username" type="text">
+				                </div>
+				                <div class="form-group mb-3">
+				              	  <input class="form-control" placeholder="Nhập mật khẩu" name="password" type="password" value="">
+				                </div>
+				                <div class="form-group mb-3">
+				              	  	<img src="simpleCaptcha.jpg" />
+				              	 	<input type="text" name="answer" placeholder="Nhập mã CAPTCHA"/><br>
+				                </div>
+				                <input class="btn btn-md btn btn-secondary btn-block" type="submit" value="Đăng nhập">
+				            </fieldset>
+				            </form>
+				        </div>
 					        </div>
 					    </div>
 				    </div>
@@ -114,18 +130,18 @@
     <div class="main">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-9 bg-light">
+                <div class="col col-ms-9 bg-light">
 					<div class="row justify-content-evenly">
-                        <div class="col-4 text-center">
-					    <img class="truyen-img mt-2" src="<%= ((httruyenbean) request.getAttribute("truyen")).getAnh() %>" alt="Ảnh truyện">
-					    <div>
-					        <h5 class="my-2 text-danger fw-bold"><%= ((httruyenbean) request.getAttribute("truyen")).getTentruyen() %></h5>
-					        <p>Tác giả: <%= ((httruyenbean) request.getAttribute("truyen")).getTentacgia() %></p>
-					        <p>Thể loại: <%= ((httruyenbean) request.getAttribute("truyen")).getTentheloai() %></p>
-					        <p class="txttruyen">Mô tả: <%= ((httruyenbean) request.getAttribute("truyen")).getMota() %></p>
-					    </div>
-					</div>
-					<div class="bg-light col-7">
+                        <div class="motatruyen col-4 text-center">
+						    <img class="truyen-img mt-2" src="<%= ((httruyenbean) request.getAttribute("truyen")).getAnh() %>" alt="Ảnh truyện">
+						    <div>
+						        <h5 class="my-2 text-danger fw-bold"><%= ((httruyenbean) request.getAttribute("truyen")).getTentruyen() %></h5>
+						        <p>Tác giả: <%= ((httruyenbean) request.getAttribute("truyen")).getTentacgia() %></p>
+						        <p>Thể loại: <%= ((httruyenbean) request.getAttribute("truyen")).getTentheloai() %></p>
+						        <p class="txttruyen">Mô tả: <%= ((httruyenbean) request.getAttribute("truyen")).getMota() %></p>
+						    </div>
+						</div>
+						<div class="noidung bg-light col col-md-7">
 					    <h5 class="text-center mt-2 text-danger fw-bold"><%= ((httruyenbean) request.getAttribute("truyen")).getTentruyen() %></h5>
 					    <p class="txttruyen"><%= ((httruyenbean) request.getAttribute("truyen")).getNoidung() %></p>
 					</div>
@@ -133,7 +149,7 @@
             		</div>
         		</div>
 
-    			<div class="bg-light col ms-2 text-center">
+    			<div class="truyenmoi bg-light col col-lg-3 ms-2 text-center">
 				    <h5 class="text-danger fw-bold text-center mt-2">Truyện mới nhất</h5>
 				    <ul class="p-0" style="list-style: none;">
 						<%	httruyenbo httruyen = new httruyenbo();
