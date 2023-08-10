@@ -42,7 +42,7 @@
 			session.setAttribute("ktdn", nguoidung);
 		}
    		%>
-    <nav class="navbar navbar-expand-md navbar-light bg-light fw-bold mb-3">
+    <nav class="navbar navbar-expand-md navbar-light bg-light fw-bold mb-3 position-fixed start-0 end-0">
         <div class="container-fluid">
         	<a href="TruyenController"><img class="logo-pd" alt="" src="img-truyen/logo-pd.png"></a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">

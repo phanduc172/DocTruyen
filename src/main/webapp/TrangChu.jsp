@@ -41,7 +41,7 @@
 			session.setAttribute("ktdn", nguoidung);
 		}
    		%>
-    <nav class="navbar navbar-expand-md navbar-light bg-light fw-bold mb-3">
+    <nav class="navbar navbar-expand-md navbar-light bg-light fw-bold mb-3 position-fixed start-0 end-0" style="z-index:100">
         <div class="container-fluid">
 			<a href="TruyenController"><img class="logo-pd" alt="" src="img-truyen/logo-pd.png"></a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -143,36 +143,30 @@
                 </div>
 
                 <div class="noidung bg-light col text-center">
-	              <div id="demo" class="carousel slide d-inline-block my-2" data-bs-ride="carousel">
-				  <!-- Indicators/dots -->
-				  <div class="carousel-indicators">
-				    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-				    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-				    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-				  </div>
 
-				  <!-- The slideshow/carousel -->
-				  <div class="carousel-inner">
-				    <div class="carousel-item active">
-				      <img src="img-truyen/ca1.jpg" alt="Los Angeles" class="d-block" style="width: 100%;">
-				    </div>
-				    <div class="carousel-item">
-				      <img src="img-truyen/ca2.jpg" alt="Chicago" class="d-block" style="width: 100%;">
-				    </div>
-				    <div class="carousel-item">
-				      <img src="img-truyen/ca3.jpg" alt="New York" class="d-block" style="width: 100%;">
-				    </div>
-				  </div>
+					<div id="carouselExampleControls" class="carousel slide mt-3" data-bs-ride="carousel">
+					  <div class="carousel-inner">
+					    <div class="carousel-item active">
+					      <img src="img-truyen/ca1.jpg" class="d-block w-100" alt="...">
+					    </div>
+					    <div class="carousel-item">
+					      <img src="img-truyen/ca2.jpg" class="d-block w-100" alt="...">
+					    </div>
+					    <div class="carousel-item">
+					      <img src="img-truyen/ca3.jpg" class="d-block w-100" alt="...">
+					    </div>
+					  </div>
+					  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					    <span class="visually-hidden">Previous</span>
+					  </button>
+					  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+					    <span class="visually-hidden">Next</span>
+					  </button>
+					</div>
 
-				  <!-- Left and right controls/icons -->
-				  <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-				    <span class="carousel-control-prev-icon"></span>
-				  </button>
-				  <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-				    <span class="carousel-control-next-icon"></span>
-				  </button>
-				</div>
-                    <h5 class="text-danger fw-bold text-center mt-2">Danh sách truyện</h5>
+	                <h5 class="text-danger fw-bold text-center my-2">Danh sách truyện</h5>
                     <ul class="row truyen-items" style="list-style: none;">
 				    <%
 				    ArrayList<httruyenbean> dshttruyen = (ArrayList)request.getAttribute("dshttruyen");
