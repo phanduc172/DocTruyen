@@ -1,6 +1,8 @@
 package dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 
 import bean.nguoidungbean;
@@ -23,4 +25,19 @@ public class nguoidungdao {
 		}
 		return ndung;
 	}
+
+	 public void themNguoiDung(nguoidungbean nd) throws Exception {
+	        KetNoidao kn = new KetNoidao();
+	        kn.KetNoi();
+
+	        String sql = "INSERT INTO NguoiDung(hoten, tendangnhap, matkhau) VALUES (?, ?, ?)";
+	        PreparedStatement cmd = kn.cn.prepareStatement(sql);
+	        cmd.setString(1, nd.getHoten());
+	        cmd.setString(2, nd.getTendangnhap());
+	        cmd.setString(3, nd.getMatkhau());
+
+	        cmd.executeUpdate();
+
+	        kn.cn.close();
+    }
 }

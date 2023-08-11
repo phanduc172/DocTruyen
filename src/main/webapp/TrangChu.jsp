@@ -30,10 +30,12 @@
 		        } else if (tb.equals("ChuaNhapMaCaptcha")) {
 		            // Sử dụng JavaScript để hiển thị alert khi chưa nhập mã CAPTCHA
 		            out.println("<script>alert('Vui lòng nhập mã CAPTCHA!');</script>");
+		        } else if (tb.equals("ThieuThongTin")) {
+		            // Sử dụng JavaScript để hiển thị alert khi thiếu thông tin
+		            out.println("<script>alert('Vui lòng điền đầy đủ thông tin!');</script>");
 		        }
 		    }
 		%>
-
 		<%
         nguoidungbean nguoidung = (nguoidungbean) session.getAttribute("ktdn");
 		if(nguoidung==null) {
@@ -41,7 +43,7 @@
 			session.setAttribute("ktdn", nguoidung);
 		}
    		%>
-    <nav class="navbar navbar-expand-md navbar-light bg-light fw-bold mb-3 position-fixed start-0 end-0" style="z-index:100">
+    <nav class="navbar navbar-expand-md navbar-light bg-light fw-bold mb-3 position-fixed start-0 end-0" style="z-index:1080">
         <div class="container-fluid">
 			<a href="TruyenController"><img class="logo-pd" alt="" src="img-truyen/logo-pd.png"></a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -88,38 +90,71 @@
 			        <a class="text-decoration-none text-danger" href="DangXuatController">Đăng xuất</a>
 				<% } %>
 				</div>
-				      <!-- The Modal -->
-			    <div class="modal" id="myModal">
+			    <!-- The Modal -->
+				<div class="modal" id="myModal">
 				    <div class="modal-dialog">
-				        <div class="modal-content">
+				        <div class="modal-content" style="margin-top: 100px;">
 
-				        <!-- Modal Header -->
-				        <div class="modal-header">
-				            <h4 class="modal-title">Đăng nhập</h4>
-				            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-				        </div>
+				            <!-- Modal Header -->
+				            <div class="modal-header">
+				                <h4 class="modal-title">Đăng nhập</h4>
+				                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				            </div>
 
-				        <!-- Modal body -->
-				        <div class="modal-body">
-				            <form method="post" action="DangNhapController">
-				            <fieldset>
-				                <div class="form-group mb-3">
-				                	<input class="form-control" placeholder="Nhập tên người dùng" name="username" type="text">
+				            <!-- Modal body -->
+				            <div class="modal-body">
+				                <ul class="nav nav-tabs ">
+				                    <li class="nav-item">
+				                        <a class="nav-link active" data-bs-toggle="tab" href="#loginForm">Đăng nhập</a>
+				                    </li>
+				                    <li class="nav-item">
+				                        <a class="nav-link" data-bs-toggle="tab" href="#registerForm">Đăng ký</a>
+				                    </li>
+				                </ul>
+
+				                <div class="tab-content mt-3">
+				                    <div id="loginForm" class="tab-pane fade show active">
+				                        <form method="post" action="DangNhapController">
+								            <fieldset>
+								                <div class="form-group mb-3">
+								                	<input class="form-control" placeholder="Nhập tên người dùng" name="username" type="text">
+								                </div>
+								                <div class="form-group mb-3">
+								              	  <input class="form-control" placeholder="Nhập mật khẩu" name="password" type="password" value="">
+								                </div>
+								                <div class="form-group mb-3">
+								              	  	<img src="simpleCaptcha.jpg" />
+								              	 	<input type="text" name="answer" placeholder="Nhập mã CAPTCHA"/><br>
+								                </div>
+								                <input class="btn btn-md btn btn-secondary btn-block" type="submit" value="Đăng nhập">
+								            </fieldset>
+							            </form>
+				                    </div>
+				                    <div id="registerForm" class="tab-pane fade">
+				                        <form method="post" action="DangKyController">
+								            <fieldset>
+								           		<div class="form-group mb-3">
+								                	<input class="form-control" placeholder="Nhập họ tên" name="dkhoten" type="text">
+								                </div>
+								                <div class="form-group mb-3">
+								                	<input class="form-control" placeholder="Nhập tên đăng nhập" name="dktendangnhap" type="text">
+								                </div>
+								                <div class="form-group mb-3">
+								              	  <input class="form-control" placeholder="Nhập mật khẩu" type="password" name="dkmatkhau" value="">
+								                </div>
+				            				   	<div class="form-group mb-3">
+								              	  	<img src="simpleCaptcha.jpg" />
+								              	 	<input type="text" name="answer" placeholder="Nhập mã CAPTCHA"/><br>
+								                </div>
+								                <input class="btn btn-md btn btn-secondary btn-block" type="submit" value="Đăng ký">
+								            </fieldset>
+							            </form>
+				                    </div>
 				                </div>
-				                <div class="form-group mb-3">
-				              	  <input class="form-control" placeholder="Nhập mật khẩu" name="password" type="password" value="">
-				                </div>
-				                <div class="form-group mb-3">
-				              	  	<img src="simpleCaptcha.jpg" />
-				              	 	<input type="text" name="answer" placeholder="Nhập mã CAPTCHA"/><br>
-				                </div>
-				                <input class="btn btn-md btn btn-secondary btn-block" type="submit" value="Đăng nhập">
-				            </fieldset>
-				            </form>
-				        </div>
+				            </div>
 				        </div>
 				    </div>
-			    </div>
+				</div>
 
 			</div>
 		</div>

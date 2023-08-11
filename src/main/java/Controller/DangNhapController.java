@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.IOException;
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,10 +44,8 @@ public class DangNhapController extends HttpServlet {
             String captchaAnswer = request.getParameter("answer");
 
             if (captchaAnswer == null || captchaAnswer.isEmpty()) {
-                // Mã CAPTCHA chưa được nhập, chuyển hướng với thông báo
                 response.sendRedirect("TruyenController?tb=ChuaNhapMaCaptcha");
             } else if (captcha.isCorrect(captchaAnswer)) {
-                // Mã CAPTCHA đúng, thực hiện xử lý đăng nhập
                 String user = request.getParameter("username");
                 String pass = request.getParameter("password");
 

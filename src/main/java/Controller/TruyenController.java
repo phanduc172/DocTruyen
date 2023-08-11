@@ -2,6 +2,7 @@ package Controller;
 
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -16,7 +17,6 @@ import bean.httruyenbean;
 import bean.theloaibean;
 import bo.httruyenbo;
 import bo.theloaibo;
-import nl.captcha.Captcha;
 
 /**
  * Servlet implementation class TheLoaiController
@@ -39,7 +39,7 @@ public class TruyenController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
-			HttpSession session=request.getSession();
+			HttpSession session = request.getSession();
 			response.setCharacterEncoding("utf-8");
 			request.setCharacterEncoding("utf-8");
 
