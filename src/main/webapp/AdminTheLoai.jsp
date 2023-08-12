@@ -73,14 +73,31 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h2 class="mt-4">Tổng quát</h2>
+                        <h2 class="my-4">Quản lý thể loại</h2>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                Danh sách truyện
+                                Danh sách thể loại
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
+									<table class="table">
+									    <thead>
+									        <tr>
+									            <th>Mã thể loại</th>
+									            <th>Tên thể loại</th>
+									        </tr>
+									    </thead>
+									    <tbody>
+									        <c:forEach items="${dstheloai}" var="theloai">
+									            <tr>
+									                <td>${theloai.getMatheloai()}</td>
+									                <td>${theloai.getTentheloai()}</td>
+									            </tr>
+									        </c:forEach>
+									    </tbody>
+									</table>
+
+
                             </div>
                         </div>
                     </div>

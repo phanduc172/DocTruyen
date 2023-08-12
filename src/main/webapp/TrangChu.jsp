@@ -97,7 +97,6 @@
 
 				            <!-- Modal Header -->
 				            <div class="modal-header">
-				                <h4 class="modal-title">Đăng nhập</h4>
 				                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 				            </div>
 
@@ -230,7 +229,5 @@
             </div>
         </div>
     </div>
-
-
 </body>
 </html>

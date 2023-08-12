@@ -73,14 +73,39 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h2 class="mt-4">Tổng quát</h2>
+                        <h2 class="mt-4">Quản lý truyện</h2>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
                                 Danh sách truyện
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
+								<table class="table">
+								    <thead class="text-center align-middle">
+								        <tr>
+								            <th>Mã truyện</th>
+								            <th>Tên truyện</th>
+								            <th>Ảnh</th>
+								            <th>Nội dung</th>
+								            <th>Mô tả</th>
+								            <th>Mã tác giả</th>
+								            <th>Mã thể loại</th>
+								        </tr>
+								    </thead>
+								    <tbody>
+									    <c:forEach items="${dstruyen}" var="truyen">
+									        <tr>
+									            <td class="text-center">${truyen.getMatruyen()}</td>
+									            <td>${truyen.getTentruyen()}</td>
+									            <td><img width="100" src="${truyen.getAnh()}" alt="Ảnh truyện"></td>
+									            <td>${truyen.getNoidung()}</td>
+									            <td>${truyen.getMota()}</td>
+									            <td>${truyen.getMatacgia()}</td>
+									            <td>${truyen.getMatheloai()}</td>
+									        </tr>
+									    </c:forEach>
+									</tbody>
+								</table>
                             </div>
                         </div>
                     </div>

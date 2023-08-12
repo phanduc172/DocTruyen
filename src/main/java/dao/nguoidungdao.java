@@ -1,14 +1,36 @@
 package dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import bean.nguoidungbean;
 
 
 public class nguoidungdao {
+	public ArrayList<nguoidungbean> getNguoiDung() throws Exception {
+        ArrayList<nguoidungbean> ds = new ArrayList<nguoidungbean>();
+        // Kết nối vào CSDL
+        KetNoidao kn = new KetNoidao();
+        kn.KetNoi();
+        String sql = "SELECT * FROM NguoiDung";
+        // Tạo câu lệnh
+        PreparedStatement cmd = kn.cn.prepareStatement(sql);
+        // Thực hiện câu lệnh
+        ResultSet rs = cmd.executeQuery();
+        while (rs.next()) {
+            long manguoidung = rs.getLong("manguoidung");
+            String hoten = rs.getString("hoten");
+            String tendangnhap = rs.getString("tendangnhap");
+            String matkhau = rs.getString("matkhau");
+            ds.add(new nguoidungbean(manguoidung, hoten, tendangnhap, matkhau));
+        }
+        rs.close();
+        kn.cn.close();
+        return ds;
+    }
+
 	public nguoidungbean ktdn(String tendn, String matkhau) throws Exception{
 		KetNoidao kn = new KetNoidao();
 		kn.KetNoi();
@@ -40,4 +62,5 @@ public class nguoidungdao {
 
 	        kn.cn.close();
     }
+
 }
