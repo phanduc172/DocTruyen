@@ -11,4 +11,8 @@ public class theloaibo {
 	public ArrayList<theloaibean> gettheloai() throws Exception {
 		return tldao.gettheloai();
 	}
+
+	public int getTongTheLoai() throws Exception {
+		return tldao.getTongTheLoai();
+	}
 }

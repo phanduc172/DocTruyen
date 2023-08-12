@@ -37,4 +37,22 @@ public class truyendao {
 		kn.cn.close();
 		return ds;
 	}
+
+    public int getTongTruyen() throws Exception {
+        int tongTruyen = 0;
+        // Kết nối vào CSDL và thực hiện truy vấn
+        KetNoidao kn = new KetNoidao();
+        kn.KetNoi();
+        String sql = "SELECT COUNT(*) as N'Tổng truyện' FROM Truyen";
+        PreparedStatement cmd = kn.cn.prepareStatement(sql);
+        ResultSet rs = cmd.executeQuery();
+
+        if (rs.next()) {
+            tongTruyen = rs.getInt("Tổng truyện");
+        }
+        rs.close();
+        kn.cn.close();
+
+        return tongTruyen;
+    }
 }

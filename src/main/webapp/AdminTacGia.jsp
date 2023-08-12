@@ -11,13 +11,13 @@
         <meta name="author" content="" />
         <title>Đọc truyện Online - Admin</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/adminstyles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="AdminTrangChu.jsp">PHD</a>
+            <a class="navbar-brand ps-3" href="AdminTrangChuController"> <img width="50px" alt="" src="img-truyen/logo-pd.png"> </a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -34,7 +34,7 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#!">Cài đặt</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Đăng xuất</a></li>
+                        <li><a class="dropdown-item" href="AdminDangXuatController">Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>
@@ -45,7 +45,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="AdminTrangChuController">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Tổng quát
                             </a>
@@ -73,30 +73,30 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h2 class="mt-4">Quản lý người dùng</h2>
+                        <h2 class="mt-4">Quản lý tác giả</h2>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                Danh sách người dùng
+                                Danh sách tác giả
                             </div>
                             <div class="card-body">
 								<table class="table">
 		                            <thead>
 		                                <tr>
-		                                    <th>Mã người dùng</th>
+		                                    <th>Mã tác giả</th>
 		                                    <th>Họ tên</th>
-		                                    <th>Tên đăng nhập</th>
-		                                    <th>Mật khẩu</th>
+		                                    <th>Quê quán</th>
 		                                </tr>
 		                            </thead>
 		                            <tbody>
-		                                <c:forEach items="${listOfUsers}" var="user">
-		                                    <tr>
-		                                        <td>${user.name}</td>
-		                                        <td>${user.email}</td>
-		                                        <td>${user.role}</td>
-		                                    </tr>
-		                                </c:forEach>
+		                                <c:forEach items="${dstacgia}" var="tacgia">
+										    <tr>
+										        <td>${tacgia.getMatacgia()}</td>
+										        <td>${tacgia.getTentacgia()}</td>
+										        <td>${tacgia.getQuequan()}</td>
+										    </tr>
+										</c:forEach>
+
 		                            </tbody>
 		                        </table>
                             </div>

@@ -10,4 +10,8 @@ public class truyenbo {
 	public ArrayList<truyenbean> gettruyen() throws Exception {
 		return tdao.gettruyen();
 	}
+
+    public int getTongTruyen() throws Exception {
+    	return tdao.getTongTruyen();
+    }
 }

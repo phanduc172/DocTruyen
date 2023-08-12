@@ -23,4 +23,8 @@ public class nguoidungbo {
             return false;
         }
     }
+
+    public int getTongNguoiDung() throws Exception {
+    	return nddao.getTongNguoiDung();
+    }
 }

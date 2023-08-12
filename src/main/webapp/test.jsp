@@ -1,3 +1,7 @@
+<%@page import="bo.nguoidungbo"%>
+<%@page import="bo.tacgiabo"%>
+<%@page import="bo.theloaibo"%>
+<%@page import="bo.truyenbo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -15,9 +19,20 @@
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
+    	<%
+       		truyenbo trbo = new truyenbo();
+	        tacgiabo tgbo = new tacgiabo();
+	        theloaibo tlbo = new theloaibo();
+	        nguoidungbo ndbo = new nguoidungbo();
+
+	        int tongTacGia = tgbo.getTongTacGia();
+	        int tongTruyen = trbo.getTongTruyen();
+	        int tongTheLoai = tlbo.getTongTheLoai();
+	        int tongNguoiDung = ndbo.getTongNguoiDung();
+	    %>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="AdminTrangChuController"> <img width="50px" alt="" src="img-truyen/logo-pd.png"> </a>
+            <a class="navbar-brand ps-3" href="AdminTrangChu.jsp">PHD</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -45,7 +60,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="AdminTrangChuController">
+                            <a class="nav-link" href="index.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Tổng quát
                             </a>
@@ -73,39 +88,14 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h2 class="mt-4">Quản lý truyện</h2>
+                        <h2 class="mt-4">Tổng quát</h2>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
                                 Danh sách truyện
                             </div>
                             <div class="card-body">
-								<table class="table">
-								    <thead class="text-center align-middle">
-								        <tr>
-								            <th>Mã truyện</th>
-								            <th>Tên truyện</th>
-								            <th>Ảnh</th>
-								            <th>Nội dung</th>
-								            <th>Mô tả</th>
-								            <th>Mã tác giả</th>
-								            <th>Mã thể loại</th>
-								        </tr>
-								    </thead>
-								    <tbody>
-									    <c:forEach items="${dstruyen}" var="truyen">
-									        <tr>
-									            <td class="text-center">${truyen.getMatruyen()}</td>
-									            <td>${truyen.getTentruyen()}</td>
-									            <td><img width="100" src="${truyen.getAnh()}" alt="Ảnh truyện"></td>
-									            <td>${truyen.getNoidung()}</td>
-									            <td>${truyen.getMota()}</td>
-									            <td>${truyen.getMatacgia()}</td>
-									            <td>${truyen.getMatheloai()}</td>
-									        </tr>
-									    </c:forEach>
-									</tbody>
-								</table>
+                                <table id="datatablesSimple">
                             </div>
                         </div>
                     </div>
@@ -119,4 +109,12 @@
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+	    <script src="js/thongke.js"></script>
+	<script>
+	var tongTacGia = <%=tongTacGia%>;
+	var tongTruyen = <%=tongTruyen%>;
+	var tongNguoiDung = <%=tongNguoiDung%>;
+	var tongTheLoai = <%=tongTheLoai%>;
+	</script>
+
 </html>

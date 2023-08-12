@@ -71,7 +71,7 @@
                        		</ul>
                         </div>
                     </div>
-                  <a href="#" class="nav-item nav-link">Đăng truyện</a>
+                  <a href="AdminDangNhapController" class="nav-item nav-link bg-danger rounded-pill text-white">Đăng truyện</a>
                 </div>
                 <form class="d-flex">
                     <div class="input-group">

@@ -63,4 +63,20 @@ public class nguoidungdao {
 	        kn.cn.close();
     }
 
+	    public int getTongNguoiDung() throws Exception {
+	        int tongNguoiDung= 0;
+	        // Kết nối vào CSDL và thực hiện truy vấn
+	        KetNoidao kn = new KetNoidao();
+	        kn.KetNoi();
+	        String sql = "SELECT COUNT(*) as N'Tổng người dùng' FROM NguoiDung";
+	        PreparedStatement cmd = kn.cn.prepareStatement(sql);
+	        ResultSet rs = cmd.executeQuery();
+	        if (rs.next()) {
+	            tongNguoiDung = rs.getInt("Tổng người dùng");
+	        }
+	        rs.close();
+	        kn.cn.close();
+	        return tongNguoiDung;
+	    }
+
 }

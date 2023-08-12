@@ -1,20 +1,21 @@
 package dao;
 
 import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import bean.theloaibean;
+import bean.tacgiabean;
 
-public class theloaidao {
-	public ArrayList<theloaibean> gettheloai() throws Exception {
-		ArrayList<theloaibean> ds = new ArrayList<theloaibean>();
+public class tacgiadao {
+    public ArrayList<tacgiabean> getTacGia() throws Exception {
+		ArrayList<tacgiabean> dstacgia = new ArrayList<tacgiabean>();
 
 		//Kết nối vào csdl
 		KetNoidao kn = new KetNoidao();
 		kn.KetNoi();
 
-		String sql = "select * from TheLoai";
+		String sql = "select * from TacGia";
 
 		//B3 Tạp câu lệnh
 		PreparedStatement cmd = kn.cn.prepareStatement(sql);
@@ -23,30 +24,32 @@ public class theloaidao {
 		ResultSet rs = cmd.executeQuery();
 
 		while(rs.next()) {
-			String matheloai = rs.getString("matheloai");
-			String tentheloai = rs.getString("tentheloai");
-			ds.add(new theloaibean(matheloai,tentheloai));
+			long matacgia = rs.getLong("matacgia");
+			String tentacgia = rs.getString("tentacgia");
+			String quequan = rs.getString("quequan");
+			dstacgia.add(new tacgiabean(matacgia, tentacgia, quequan));
 		}
 		rs.close();
 		kn.cn.close();
-		return ds;
+		return dstacgia;
 	}
 
-	public int getTongTheLoai() throws Exception {
-        int tongTheLoai = 0;
+    public int getTongTacGia() throws Exception {
+        int tongTacGia = 0;
         // Kết nối vào CSDL và thực hiện truy vấn
         KetNoidao kn = new KetNoidao();
         kn.KetNoi();
-        String sql = "SELECT COUNT(*) as N'Tổng thể loại' FROM TheLoai";
+        String sql = "SELECT COUNT(*) as N'Tổng tác giả' FROM TacGia";
         PreparedStatement cmd = kn.cn.prepareStatement(sql);
         ResultSet rs = cmd.executeQuery();
 
         if (rs.next()) {
-            tongTheLoai = rs.getInt("Tổng thể loại");
+            tongTacGia = rs.getInt("Tổng tác giả");
         }
+
         rs.close();
         kn.cn.close();
 
-        return tongTheLoai;
+        return tongTacGia;
     }
 }
