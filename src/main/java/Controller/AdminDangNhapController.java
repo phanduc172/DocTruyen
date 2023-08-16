@@ -33,12 +33,12 @@ public class AdminDangNhapController extends HttpServlet {
                 // Đăng nhập thành công, lưu thông tin vào session
                 HttpSession session = request.getSession();
                 session.setAttribute("tkadmin", tkadmin);
-                response.sendRedirect("AdminTruyenController"); // Chuyển hướng đến trang quản lý truyện
+                response.sendRedirect("AdminTrangChuController"); // Chuyển hướng đến trang quản lý truyện
             } else {
-                // Đăng nhập thất bại, quay trở lại trang đăng nhập với thông báo lỗi
-                request.setAttribute("loginError", "Invalid username or password.");
-   				RequestDispatcher rd = request.getRequestDispatcher("AdminDangNhapController?tb=DangNhapSai");
-   				rd.forward(request, response);
+                // Đăng nhập thất bại, gửi thông báo lỗi về trang đăng nhập
+                request.setAttribute("errorMessage", "Tài khoản hoặc mật khẩu không chính xác");
+                RequestDispatcher rd = request.getRequestDispatcher("AdminDangNhap.jsp");
+                rd.forward(request, response);
             }
         } catch (Exception e) {
             e.printStackTrace();

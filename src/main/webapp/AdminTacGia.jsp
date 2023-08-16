@@ -74,7 +74,27 @@
                 <main>
                     <div class="container-fluid px-4">
                         <h2 class="mt-4">Quản lý tác giả</h2>
-                        <div class="card mb-4">
+                        <form action="AdminTacGiaController" method="get" class="form-inline d-flex justify-content-between align-items-center">
+						    <div class="form-group">
+						        <label for="txtmatacgia">Mã tác giả:</label>
+						        <input name="txtmatacgia"" type="text" class="form-control mt-1" placeholder="Nhập mã tác giả">
+						    </div>
+						    <div class="form-group">
+						        <label for="txttentacgia">Tên tác giả:</label>
+						        <input name="txttentacgia" type="text" class="form-control mt-1" placeholder="Nhập tên tác giả">
+						    </div>
+						    <div class="form-group">
+						        <label for="txttentacgia">Quê quán:</label>
+						        <input name="txtquequan" type="text" class="form-control mt-1" placeholder="Nhập quê quán">
+						    </div>
+						    <div class="form-group">
+						        <input class="btn btn-secondary" name="butadd" type="submit" value="Thêm">
+						    </div>
+						    <div class="form-group">
+						        <input class="btn btn-secondary" name="butupdate" type="submit" value="Cập nhật">
+						    </div>
+						</form>
+                        <div class="card my-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
                                 Danh sách tác giả
@@ -86,6 +106,7 @@
 		                                    <th>Mã tác giả</th>
 		                                    <th>Họ tên</th>
 		                                    <th>Quê quán</th>
+		                                    <th></th>
 		                                </tr>
 		                            </thead>
 		                            <tbody>
@@ -94,9 +115,9 @@
 										        <td>${tacgia.getMatacgia()}</td>
 										        <td>${tacgia.getTentacgia()}</td>
 										        <td>${tacgia.getQuequan()}</td>
+										        <td><a href="AdminTheLoaiController?mtg=${tacgia.getMatacgia()}&tab=xoa">Xóa</a> </td>
 										    </tr>
 										</c:forEach>
-
 		                            </tbody>
 		                        </table>
                             </div>
@@ -112,4 +133,5 @@
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+		<script src="js/thongke.js"></script>
 </html>

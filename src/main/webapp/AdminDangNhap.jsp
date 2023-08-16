@@ -9,6 +9,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.0/font/bootstrap-icons.css">
 </head>
+	<% String errorMessage = (String) request.getAttribute("errorMessage");
+        if (errorMessage != null) { %>
+            <script>
+                alert("<%= errorMessage %>");
+            </script>
+    <% } %>
 <body>
 <div class="login-form d-flex justify-content-center align-items-center vh-100">
     <form action="AdminDangNhapController" method="post" class="p-4 bg-light rounded-lg" style="width: 400px;">

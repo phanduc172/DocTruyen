@@ -49,4 +49,42 @@ public class theloaidao {
 
         return tongTheLoai;
     }
+
+	public int xoaTheLoai(long matheloai) throws Exception {
+		KetNoidao kn = new KetNoidao();
+		kn.KetNoi();
+		String sql = "delete from TheLoai where matheloai = ?";
+		PreparedStatement cmd = kn.cn.prepareStatement(sql);
+	    cmd.setLong(1, matheloai);
+		int kq = cmd.executeUpdate();
+		cmd.close();
+		kn.cn.close();
+		return kq;
+	}
+
+	public int themTheLoai(long matheloai, String tentheloai) throws Exception {
+		KetNoidao kn = new KetNoidao();
+		kn.KetNoi();
+		String sql = "insert into TheLoai(matheloai,tentheloai) values (?,?)";
+	    PreparedStatement cmd = kn.cn.prepareStatement(sql);
+	    cmd.setLong(1, matheloai);
+	    cmd.setString(2, tentheloai);
+		int kq = cmd.executeUpdate();
+		cmd.close();
+		kn.cn.close();
+		return kq;
+	}
+
+	public int suaTheLoai(long matheloai, String tentheloaimoi) throws Exception {
+		KetNoidao kn = new KetNoidao();
+		kn.KetNoi();
+		String sql = "update TheLoai set tentheloai= ? where matheloai = ?";
+		PreparedStatement cmd = kn.cn.prepareStatement(sql);
+	    cmd.setString(1,tentheloaimoi);
+	    cmd.setLong(2,matheloai);
+		int kq = cmd.executeUpdate();
+		cmd.close();
+		kn.cn.close();
+		return kq;
+	}
 }

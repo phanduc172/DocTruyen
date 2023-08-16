@@ -52,4 +52,43 @@ public class tacgiadao {
 
         return tongTacGia;
     }
+
+    public int xoaTacGia(long matacgia) throws Exception {
+		KetNoidao kn = new KetNoidao();
+		kn.KetNoi();
+		String sql = "delete from TacGia where matacgia = ?";
+		PreparedStatement cmd = kn.cn.prepareStatement(sql);
+	    cmd.setLong(1, matacgia);
+		int kq = cmd.executeUpdate();
+		cmd.close();
+		kn.cn.close();
+		return kq;
+	}
+
+	public int themTacGia(String tentacgia, String quequan) throws Exception {
+		KetNoidao kn = new KetNoidao();
+		kn.KetNoi();
+		String sql = "insert into TacGia(tentacgia,quequan) values (?,?)";
+	    PreparedStatement cmd = kn.cn.prepareStatement(sql);
+	    cmd.setString(1, tentacgia);
+	    cmd.setString(2, quequan);
+		int kq = cmd.executeUpdate();
+		cmd.close();
+		kn.cn.close();
+		return kq;
+	}
+
+	public int suaTacGia(long matacgia,String tentacgia, String quequan) throws Exception {
+		KetNoidao kn = new KetNoidao();
+		kn.KetNoi();
+		String sql = "update TacGia set tentacgia = ? , quequan = ? where matacgia = ?;";
+		PreparedStatement cmd = kn.cn.prepareStatement(sql);
+	    cmd.setString(1,tentacgia);
+	    cmd.setString(2,quequan);
+	    cmd.setLong(3,matacgia);
+		int kq = cmd.executeUpdate();
+		cmd.close();
+		kn.cn.close();
+		return kq;
+	}
 }

@@ -15,4 +15,18 @@ public class theloaibo {
 	public int getTongTheLoai() throws Exception {
 		return tldao.getTongTheLoai();
 	}
+
+	public int xoaTheLoai(long matheloai) throws Exception {
+		return tldao.xoaTheLoai(matheloai);
+	}
+
+	public int themTheLoai(long matheloai, String tentheloai) throws Exception {
+		return tldao.themTheLoai(matheloai,tentheloai);
+	}
+
+	public int suaTheLoai(long matheloai, String tentheloaimoi) throws Exception {
+		return tldao.suaTheLoai(matheloai, tentheloaimoi);
+	}
+
+
 }
