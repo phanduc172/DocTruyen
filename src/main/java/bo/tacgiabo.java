@@ -14,4 +14,16 @@ public class tacgiabo {
     public int getTongTacGia() throws Exception {
     	return tgdao.getTongTacGia();
     }
+
+    public int xoaTacGia(long matacgia) throws Exception {
+    	return tgdao.xoaTacGia(matacgia);
+    }
+
+	public int themTacGia(String tentacgia, String quequan) throws Exception {
+		return tgdao.themTacGia(tentacgia, quequan);
+	}
+
+	public int suaTacGia(long matacgia,String tentacgia, String quequan) throws Exception {
+		return tgdao.suaTacGia(matacgia, tentacgia, quequan);
+	}
 }

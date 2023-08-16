@@ -79,4 +79,45 @@ public class nguoidungdao {
 	        return tongNguoiDung;
 	    }
 
+	    public int xoaNguoiDung(long manguoidung) throws Exception {
+			KetNoidao kn = new KetNoidao();
+			kn.KetNoi();
+			String sql = "delete from NguoiDung where manguoidung = ?";
+			PreparedStatement cmd = kn.cn.prepareStatement(sql);
+		    cmd.setLong(1, manguoidung);
+			int kq = cmd.executeUpdate();
+			cmd.close();
+			kn.cn.close();
+			return kq;
+		}
+
+		public int themNguoiDungAD(long manguoidung,String hoten, String tendangnhap, String matkhau) throws Exception {
+			KetNoidao kn = new KetNoidao();
+			kn.KetNoi();
+			String sql = "insert into NguoiDung(hoten,tendangnhap,matkhau) values (?,?,?)";
+		    PreparedStatement cmd = kn.cn.prepareStatement(sql);
+		    cmd.setString(1, hoten);
+		    cmd.setString(2, tendangnhap);
+		    cmd.setString(3,matkhau);
+			int kq = cmd.executeUpdate();
+			cmd.close();
+			kn.cn.close();
+			return kq;
+		}
+
+		public int suaNguoiDung(long manguoidung,String hoten, String tendangnhap, String matkhau) throws Exception {
+			KetNoidao kn = new KetNoidao();
+			kn.KetNoi();
+			String sql = "update NguoiDung set hoten = ?, tendangnhap= ?,matkhau = ? where manguoidung = ?";
+			PreparedStatement cmd = kn.cn.prepareStatement(sql);
+		    cmd.setString(1,hoten);
+		    cmd.setString(2,tendangnhap);
+		    cmd.setString(3,matkhau);
+		    cmd.setLong(4,manguoidung);
+			int kq = cmd.executeUpdate();
+			cmd.close();
+			kn.cn.close();
+			return kq;
+		}
+
 }

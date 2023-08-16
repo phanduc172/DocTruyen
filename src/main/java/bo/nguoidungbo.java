@@ -27,4 +27,18 @@ public class nguoidungbo {
     public int getTongNguoiDung() throws Exception {
     	return nddao.getTongNguoiDung();
     }
+
+    public int xoaNguoiDung(long manguoidung) throws Exception {
+    	return nddao.xoaNguoiDung(manguoidung);
+    }
+
+	public int themNguoiDungAD(long manguoidung,String hoten, String tendangnhap, String matkhau) throws Exception {
+		return nddao.themNguoiDungAD(manguoidung, hoten, tendangnhap, matkhau);
+	}
+
+	public int suaNguoiDung(long manguoidung,String hoten, String tendangnhap, String matkhau) throws Exception {
+		return nddao.suaNguoiDung(manguoidung, hoten, tendangnhap, matkhau);
+	}
+
+
 }

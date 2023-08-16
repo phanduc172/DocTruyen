@@ -90,6 +90,7 @@
 								            <th>Mô tả</th>
 								            <th>Mã tác giả</th>
 								            <th>Mã thể loại</th>
+								            <th></th>
 								        </tr>
 								    </thead>
 								    <tbody>
@@ -102,6 +103,7 @@
 									            <td>${truyen.getMota()}</td>
 									            <td>${truyen.getMatacgia()}</td>
 									            <td>${truyen.getMatheloai()}</td>
+									            <td><a href="AdminTruyenController?mtr=${truyen.getMatruyen()}&tab=xoa">Xóa</a> </td>
 									        </tr>
 									    </c:forEach>
 									</tbody>

@@ -84,7 +84,7 @@
 						        <input name="txttentacgia" type="text" class="form-control mt-1" placeholder="Nhập tên tác giả">
 						    </div>
 						    <div class="form-group">
-						        <label for="txttentacgia">Quê quán:</label>
+						        <label for="txtquequan">Quê quán:</label>
 						        <input name="txtquequan" type="text" class="form-control mt-1" placeholder="Nhập quê quán">
 						    </div>
 						    <div class="form-group">
@@ -94,13 +94,14 @@
 						        <input class="btn btn-secondary" name="butupdate" type="submit" value="Cập nhật">
 						    </div>
 						</form>
-                        <div class="card my-4">
+					    <p class="text-danger mt-1 fw-bold">* Thêm tác giả không cần nhập mã tác giả</p>
+                        <div class="card my-2">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
                                 Danh sách tác giả
                             </div>
                             <div class="card-body">
-								<table class="table">
+								<table class="table table-hover">
 		                            <thead>
 		                                <tr>
 		                                    <th>Mã tác giả</th>
@@ -115,7 +116,7 @@
 										        <td>${tacgia.getMatacgia()}</td>
 										        <td>${tacgia.getTentacgia()}</td>
 										        <td>${tacgia.getQuequan()}</td>
-										        <td><a href="AdminTheLoaiController?mtg=${tacgia.getMatacgia()}&tab=xoa">Xóa</a> </td>
+										        <td><a href="AdminTacGiaController?mtg=${tacgia.getMatacgia()}&tab=xoa">Xóa</a> </td>
 										    </tr>
 										</c:forEach>
 		                            </tbody>

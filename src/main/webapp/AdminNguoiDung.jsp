@@ -74,19 +74,45 @@
                 <main>
                     <div class="container-fluid px-4">
                         <h2 class="mt-4">Quản lý người dùng</h2>
-                        <div class="card mb-4">
+                        <form action="AdminNguoiDungController" method="get" class="form-inline d-flex justify-content-between align-items-start flex-wrap">
+					        <div class="form-group">
+					            <label for="txtmanguoidung">Mã người dùng:</label>
+					            <input name="txtmanguoidung" type="text" class="form-control mt-1" placeholder="Nhập mã mã người dùng">
+					        </div>
+					        <div class="form-group">
+					            <label for="txttennguoidung">Tên người dùng:</label>
+					            <input name="txttennguoidung" type="text" class="form-control mt-1" placeholder="Nhập tên người dùng">
+					        </div>
+					        <div class="form-group">
+					            <label for="txttendangnhap">Tên đăng nhập:</label>
+					            <input name="txttendangnhap" type="text" class="form-control mt-1" placeholder="Nhập tên đăng nhập">
+					        </div>
+					        <div class="form-group">
+					            <label for="txtmatkhau">Mật khẩu:</label>
+					            <input name="txtmatkhau" type="text" class="form-control mt-1" placeholder="Nhập mật khẩu">
+					        </div>
+					        <div class="w-100"></div> <!-- Dòng trống để ngắt các nút ra hàng mới -->
+					        <div class="form-group">
+					            <input class="btn btn-secondary mt-2" name="butadd" type="submit" value="Thêm">
+					            <input class="btn btn-secondary mt-2" name="butupdate" type="submit" value="Cập nhật">
+					        </div>
+					        <div class="form-group">
+					        </div>
+					    </form>
+                        <div class="card my-3">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
                                 Danh sách người dùng
                             </div>
                             <div class="card-body">
-								<table class="table">
+								<table class="table table-hover">
 		                            <thead>
 		                                <tr>
 		                                    <th>Mã người dùng</th>
 		                                    <th>Họ tên</th>
 		                                    <th>Tên đăng nhập</th>
 		                                    <th>Mật khẩu</th>
+		                                    <th></th>
 		                                </tr>
 		                            </thead>
 		                            <tbody>
@@ -96,6 +122,7 @@
 		                                        <td>${nguoidung.getHoten()}</td>
 		                                        <td>${nguoidung.getTendangnhap()}</td>
 		                                        <td>${nguoidung.getMatkhau()}</td>
+		                                        <td><a href="AdminNguoiDungController?mnd=${nguoidung.getManguoidung()}&tab=xoa">Xóa</a> </td>
 		                                    </tr>
 		                                </c:forEach>
 		                            </tbody>
