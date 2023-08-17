@@ -25,6 +25,42 @@ public class AdminTruyenController extends HttpServlet {
             truyenbo trbo = new truyenbo();
             ArrayList<truyenbean> dstruyen = trbo.gettruyen();
 
+            String tab = request.getParameter("tab");
+            String mtrStr = request.getParameter("txtmatruyen");
+            String tentruyen = request.getParameter("txttentruyen");
+            String anh = request.getParameter("txtanh");
+            String noidung = request.getParameter("txtnoidung");
+            String mota = request.getParameter("txtmota");
+            String mtgStr = request.getParameter("txtmatacgia");
+            String mtlStr = request.getParameter("txtmatheloai");
+
+            long mtr = 0;
+            if (mtrStr != null && !mtrStr.isEmpty()) {
+                mtr = Long.parseLong(mtrStr);
+            }
+
+            long mtg = 0;
+            if (mtgStr != null && !mtgStr.isEmpty()) {
+                mtg = Long.parseLong(mtgStr);
+            }
+
+            long mtl = 0;
+            if (mtlStr != null && !mtlStr.isEmpty()) {
+                mtl = Long.parseLong(mtlStr);
+            }
+
+            if (request.getParameter("butadd") != null) {
+                trbo.themTruyen(tentruyen, anh, noidung, mota, mtg, mtl);
+            } else if (request.getParameter("butupdate") != null) {
+                trbo.suaTruyen(mtr, tentruyen, anh, noidung, mota, mtg, mtl);
+            } else if (tab != null && tab.equals("xoa")) {
+            	String mtrxoa = request.getParameter("mtr");
+        	    long matruyen = Long.parseLong(mtrxoa);
+        	    trbo.xoaTruyen(matruyen);
+            }
+
+            dstruyen = trbo.gettruyen();
+
             request.setAttribute("dstruyen", dstruyen);
             request.getRequestDispatcher("AdminTruyen.jsp").forward(request, response);
         } catch (Exception e) {

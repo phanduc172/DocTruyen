@@ -99,6 +99,7 @@
 					        <div class="form-group">
 					        </div>
 					    </form>
+					    <p class="fw-bold text-danger">* Thêm người dùng không cần nhập mã người dùng</p>
                         <div class="card my-3">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>

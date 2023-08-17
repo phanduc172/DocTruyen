@@ -15,7 +15,7 @@ public class truyendao {
 		KetNoidao kn = new KetNoidao();
 		kn.KetNoi();
 
-		String sql = "select * from Truyen";
+		String sql = "select * from Truyen order by matruyen desc";
 
 		//B3 Tạp câu lệnh
 		PreparedStatement cmd = kn.cn.prepareStatement(sql);
@@ -55,4 +55,51 @@ public class truyendao {
 
         return tongTruyen;
     }
+
+    public int xoaTruyen(long matruyen) throws Exception {
+		KetNoidao kn = new KetNoidao();
+		kn.KetNoi();
+		String sql = "delete from Truyen where matruyen = ?";
+		PreparedStatement cmd = kn.cn.prepareStatement(sql);
+	    cmd.setLong(1, matruyen);
+		int kq = cmd.executeUpdate();
+		cmd.close();
+		kn.cn.close();
+		return kq;
+	}
+
+	public int themTruyen(String tentruyen,String anh,String noidung,String mota, long matacgia, long matheloai) throws Exception {
+		KetNoidao kn = new KetNoidao();
+		kn.KetNoi();
+		String sql = "insert into Truyen(tentruyen,anh,noidung,mota,matacgia,matheloai) values (?,?,?,?,?,?)";
+	    PreparedStatement cmd = kn.cn.prepareStatement(sql);
+	    cmd.setString(1, tentruyen);
+	    cmd.setString(2, anh);
+	    cmd.setString(3, noidung);
+	    cmd.setString(4, mota);
+	    cmd.setLong(5, matacgia);
+	    cmd.setLong(6, matheloai);
+		int kq = cmd.executeUpdate();
+		cmd.close();
+		kn.cn.close();
+		return kq;
+	}
+
+	public int suaTruyen(long matruyen, String tentruyen,String anh,String noidung,String mota, long matacgia, long matheloai) throws Exception {
+		KetNoidao kn = new KetNoidao();
+		kn.KetNoi();
+		String sql = "update Truyen set tentruyen = ?, anh = ?, noidung = ?,mota = ?, matacgia = ?, matheloai = ? where matruyen = ?";
+		PreparedStatement cmd = kn.cn.prepareStatement(sql);
+		cmd.setString(1, tentruyen);
+	    cmd.setString(2, anh);
+	    cmd.setString(3, noidung);
+	    cmd.setString(4, mota);
+	    cmd.setLong(5, matacgia);
+	    cmd.setLong(6, matheloai);
+	    cmd.setLong(7, matruyen);
+		int kq = cmd.executeUpdate();
+		cmd.close();
+		kn.cn.close();
+		return kq;
+	}
 }

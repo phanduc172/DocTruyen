@@ -34,7 +34,7 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#!">Cài đặt</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Đăng xuất</a></li>
+                        <li><a class="dropdown-item" href="AdminDangXuatController">Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>
@@ -74,7 +74,45 @@
                 <main>
                     <div class="container-fluid px-4">
                         <h2 class="mt-4">Quản lý truyện</h2>
-                        <div class="card mb-4">
+                        <form action="AdminTruyenController" method="get" class="form-inline d-flex justify-content-start align-items-start flex-wrap">
+					        <div class="form-group me-2">
+					            <label for="txtmatruyen">Mã truyện:</label>
+					            <input name="txtmatruyen" type="text" class="form-control mt-1" placeholder="Nhập mã truyện">
+					        </div>
+					        <div class="form-group me-2">
+					            <label for="txttentruyen">Tên truyện:</label>
+					            <input name="txttentruyen" type="text" class="form-control mt-1" placeholder="Nhập tên truyện">
+					        </div>
+					        <div class="form-group me-2">
+					            <label for="txtanh">Tên ảnh:</label>
+					            <input name="txtanh" type="text" class="form-control mt-1" placeholder="Nhập đường dẫn ảnh">
+					        </div>
+					        <div class="form-group me-2">
+					            <label for="txtnoidung">Nội dung:</label>
+					            <input name="txtnoidung" type="text" class="form-control mt-1" placeholder="Nhập nội dung">
+					        </div>
+					        <div class="form-group me-2">
+					            <label for="txtmota">Mô tả:</label>
+					            <input name="txtmota" type="text" class="form-control mt-1" placeholder="Nhập mô tả">
+					        </div>
+					        <div class="form-group me-2">
+					            <label for="txtmatacgia">Mã tác giả:</label>
+					            <input name="txtmatacgia" type="text" class="form-control mt-1" placeholder="Nhập mã tác giả">
+					        </div>
+					        <div class="form-group me-2">
+					            <label for="txtmatheloai">Mã thể loại:</label>
+					            <input name="txtmatheloai" type="text" class="form-control mt-1" placeholder="Nhập mã thể loại">
+					        </div>
+					        <div class="w-100"></div>
+					        <div class="form-group me-2">
+					            <input class="btn btn-secondary mt-2" name="butadd" type="submit" value="Thêm">
+					            <input class="btn btn-secondary mt-2" name="butupdate" type="submit" value="Cập nhật">
+					        </div>
+					        <div class="form-group me-2">
+					        </div>
+					    </form>
+					    <p class="text-danger mt-1 fw-bold">* Thêm truyện không cần nhập mã truyện</p>
+                        <div class="card my-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
                                 Danh sách truyện
