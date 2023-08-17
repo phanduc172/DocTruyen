@@ -10,6 +10,11 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+.adtruyen-rsp {
+	min-width: 768px !important;
+}
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -10844,6 +10849,7 @@ textarea.form-control-lg {
 html,
 body {
   height: 100%;
+  min-width: 480px;
 }
 
 #layoutAuthentication {

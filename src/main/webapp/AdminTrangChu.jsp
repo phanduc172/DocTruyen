@@ -137,28 +137,22 @@
 					            Danh sách truyện
 					        </div>
 					        <div class="card-body">
-					            <table class="table">
+					            <table class="table table-hover">
 								    <thead class="text-center align-middle">
 								        <tr>
-								            <th>Mã truyện</th>
+								        	<th>Mã truyện</th>
 								            <th>Tên truyện</th>
-								            <th>Ảnh</th>
-								            <th>Nội dung</th>
-								            <th>Mô tả</th>
-								            <th>Mã tác giả</th>
-								            <th>Mã thể loại</th>
+								            <th>Tác giả</th>
+								            <th>Thể loại</th>
 								        </tr>
 								    </thead>
 								    <tbody>
-									    <c:forEach items="${dstruyen}" var="truyen">
-									        <tr>
-									            <td class="text-center">${truyen.getMatruyen()}</td>
-									            <td>${truyen.getTentruyen()}</td>
-									            <td><img width="100" src="${truyen.getAnh()}" alt="Ảnh truyện"></td>
-									            <td>${truyen.getNoidung()}</td>
-									            <td>${truyen.getMota()}</td>
-									            <td>${truyen.getMatacgia()}</td>
-									            <td>${truyen.getMatheloai()}</td>
+									    <c:forEach items="${htdstruyen}" var="truyen">
+									        <tr class="text-center">
+									            <td>${truyen.getMatruyen()}</td>
+									            <td class="text-start">${truyen.getTentruyen()}</td>
+									            <td>${truyen.getTentacgia()}</td>
+									            <td>${truyen.getTentheloai()}</td>
 									        </tr>
 									    </c:forEach>
 									</tbody>
@@ -168,8 +162,16 @@
 					</div>
 				</div>
              </main>
+             <footer class="bg-dark text-white fw-bold fs-5 text-center py-3">
+			   <p class="m-0">&copy; 2023 No CopyRight</p>
+			   <p class="m-0">Mã sinh viên: 20T1020019</p>
+			   <p class="m-0">Tên: Phan Đức</p>
+			   <p class="m-0">Email: <a class="text-decoration-none text-white" href="mailto:20t1020019@husc.edu">20t1020019@husc.edu</a></p>
+			</footer>
 		</div>
      </div>
+
+
 </body>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

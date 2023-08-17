@@ -74,8 +74,8 @@
                <main>
                    <div class="container-fluid px-4">
                        <h2 class="my-4">Quản lý thể loại</h2>
-                       <form action="AdminTheLoaiController" method="get" class="form-inline d-flex justify-content-between align-items-center">
-						    <div class="form-group">
+                       <form action="AdminTheLoaiController" method="get" class="form-inline d-flex justify-content-start align-items-center flex-wrap">
+						    <div class="form-group me-2">
 						        <label for="txtmatheloai">Mã thể loại:</label>
 						        <input name="txtmatheloai" type="text" class="form-control" placeholder="Nhập mã thể loại">
 						    </div>
@@ -83,11 +83,12 @@
 						        <label for="txttentheloai">Tên thể loại:</label>
 						        <input name="txttentheloai" type="text" class="form-control" placeholder="Nhập tên thể loại">
 						    </div>
-						    <div class="form-group">
+						    <div class="w-100"></div>
+						    <div class="form-group mt-2">
 						        <input class="btn btn-secondary" name="butadd" type="submit" value="Thêm">
+						        <input class="btn btn-secondary" name="butupdate" type="submit" value="Cập nhật">
 						    </div>
 						    <div class="form-group">
-						        <input class="btn btn-secondary" name="butupdate" type="submit" value="Cập nhật">
 						    </div>
 						</form>
                        <div class="card my-4">
@@ -119,6 +120,12 @@
                         </div>
                     </div>
                 </main>
+        	<footer class="bg-dark text-white fw-bold fs-5 text-center py-3">
+			   <p class="m-0">&copy; 2023 No CopyRight</p>
+			   <p class="m-0">Mã sinh viên: 20T1020019</p>
+			   <p class="m-0">Tên: Phan Đức</p>
+			   <p class="m-0">Email: <a class="text-decoration-none text-white" href="mailto:20t1020019@husc.edu">20t1020019@husc.edu</a></p>
+			</footer>
 			</div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

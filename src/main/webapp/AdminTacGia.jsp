@@ -74,7 +74,7 @@
                 <main>
                     <div class="container-fluid px-4">
                         <h2 class="mt-4">Quản lý tác giả</h2>
-                        <form action="AdminTacGiaController" method="get" class="form-inline d-flex justify-content-between align-items-center">
+                        <form action="AdminTacGiaController" method="get" class="form-inline d-flex justify-content-between align-items-center flex-wrap">
 						    <div class="form-group">
 						        <label for="txtmatacgia">Mã tác giả:</label>
 						        <input name="txtmatacgia"" type="text" class="form-control mt-1" placeholder="Nhập mã tác giả">
@@ -87,11 +87,12 @@
 						        <label for="txtquequan">Quê quán:</label>
 						        <input name="txtquequan" type="text" class="form-control mt-1" placeholder="Nhập quê quán">
 						    </div>
-						    <div class="form-group">
+						    <div class="w-100"></div>
+						    <div class="form-group mt-2">
 						        <input class="btn btn-secondary" name="butadd" type="submit" value="Thêm">
+						        <input class="btn btn-secondary" name="butupdate" type="submit" value="Cập nhật">
 						    </div>
 						    <div class="form-group">
-						        <input class="btn btn-secondary" name="butupdate" type="submit" value="Cập nhật">
 						    </div>
 						</form>
 					    <p class="text-danger mt-1 fw-bold">* Thêm tác giả không cần nhập mã tác giả</p>
@@ -125,6 +126,12 @@
                         </div>
                     </div>
                 </main>
+                <footer class="mt-3 bg-dark text-white fw-bold fs-5 text-center py-3">
+				   <p class="m-0">&copy; 2023 No CopyRight</p>
+				   <p class="m-0">Mã sinh viên: 20T1020019</p>
+				   <p class="m-0">Tên: Phan Đức</p>
+				   <p class="m-0">Email: <a class="text-decoration-none text-white" href="mailto:20t1020019@husc.edu">20t1020019@husc.edu</a></p>
+				</footer>
 			</div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

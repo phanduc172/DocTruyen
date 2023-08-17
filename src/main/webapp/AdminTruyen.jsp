@@ -14,7 +14,7 @@
         <link href="css/adminstyles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
-    <body class="sb-nav-fixed">
+    <body class="sb-nav-fixed adtruyen-rsp">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="AdminTrangChuController"> <img width="50px" alt="" src="img-truyen/logo-pd.png"> </a>
@@ -84,7 +84,7 @@
 					            <input name="txttentruyen" type="text" class="form-control mt-1" placeholder="Nhập tên truyện">
 					        </div>
 					        <div class="form-group me-2">
-					            <label for="txtanh">Tên ảnh:</label>
+					            <label for="txtanh">Ảnh:</label>
 					            <input name="txtanh" type="text" class="form-control mt-1" placeholder="Nhập đường dẫn ảnh">
 					        </div>
 					        <div class="form-group me-2">
@@ -150,6 +150,12 @@
                         </div>
                     </div>
                 </main>
+                <footer class="mt-3 bg-dark text-white fw-bold fs-5 text-center py-3">
+				   <p class="m-0">&copy; 2023 No CopyRight</p>
+				   <p class="m-0">Mã sinh viên: 20T1020019</p>
+				   <p class="m-0">Tên: Phan Đức</p>
+				   <p class="m-0">Email: <a class="text-decoration-none text-white" href="mailto:20t1020019@husc.edu">20t1020019@husc.edu</a></p>
+				</footer>
 			</div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

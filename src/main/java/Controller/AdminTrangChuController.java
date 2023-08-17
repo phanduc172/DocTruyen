@@ -1,5 +1,6 @@
 package Controller;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -10,7 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.httruyenbean;
 import bean.truyenbean;
+import bo.httruyenbo;
 import bo.truyenbo;
 
 /**
@@ -37,10 +40,10 @@ public class AdminTrangChuController extends HttpServlet {
 			response.setCharacterEncoding("utf-8");
 	        request.setCharacterEncoding("utf-8");
 
-	        truyenbo trbo = new truyenbo();
-	        ArrayList<truyenbean> dstruyen = trbo.gettruyen();
+	        httruyenbo httrbo = new httruyenbo();
+	        ArrayList<httruyenbean> htdstruyen = httrbo.getHTTruyen();
 
-	        request.setAttribute("dstruyen", dstruyen);
+	        request.setAttribute("htdstruyen", htdstruyen);
 	        request.getRequestDispatcher("AdminTrangChu.jsp").forward(request, response);
 		} catch (Exception e) {
 			// TODO: handle exception
