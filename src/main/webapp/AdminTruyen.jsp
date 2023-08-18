@@ -13,6 +13,7 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/adminstyles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+		<script src="ckeditor/ckeditor.js"></script>
     </head>
     <body class="sb-nav-fixed adtruyen-rsp">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -74,6 +75,7 @@
                 <main>
                     <div class="container-fluid px-4">
                         <h2 class="mt-4">Quản lý truyện</h2>
+                        <p class="text-danger mt-1 fw-bold">* Thêm truyện không cần nhập mã truyện</p>
                         <form action="AdminTruyenController" method="get" class="form-inline d-flex justify-content-start align-items-start flex-wrap">
 					        <div class="form-group me-2">
 					            <label for="txtmatruyen">Mã truyện:</label>
@@ -87,11 +89,11 @@
 					            <label for="txtanh">Ảnh:</label>
 					            <input name="txtanh" type="text" class="form-control mt-1" placeholder="Nhập đường dẫn ảnh">
 					        </div>
-					        <div class="form-group me-2">
-					            <label for="txtnoidung">Nội dung:</label>
-					            <input name="txtnoidung" type="text" class="form-control mt-1" placeholder="Nhập nội dung">
-					        </div>
-					        <div class="form-group me-2">
+<!-- 					        <div class="form-group me-2"> -->
+<!-- 					            <label for="txtnoidung">Nội dung:</label> -->
+<!-- 					            <input name="txtnoidung" type="text" class="form-control mt-1" placeholder="Nhập nội dung"> -->
+<!-- 					        </div> -->
+							<div class="form-group me-2">
 					            <label for="txtmota">Mô tả:</label>
 					            <input name="txtmota" type="text" class="form-control mt-1" placeholder="Nhập mô tả">
 					        </div>
@@ -105,13 +107,18 @@
 					        </div>
 					        <div class="w-100"></div>
 					        <div class="form-group me-2">
+							    <label for="txtnoidung">Nội dung</label>
+							    <textarea id="txtnoidung" name="txtnoidung" rows="4" cols="50"></textarea>
+							</div>
+
+					        <div class="w-100"></div>
+					        <div class="form-group me-2">
 					            <input class="btn btn-secondary mt-2" name="butadd" type="submit" value="Thêm">
 					            <input class="btn btn-secondary mt-2" name="butupdate" type="submit" value="Cập nhật">
 					        </div>
 					        <div class="form-group me-2">
 					        </div>
 					    </form>
-					    <p class="text-danger mt-1 fw-bold">* Thêm truyện không cần nhập mã truyện</p>
                         <div class="card my-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -166,4 +173,8 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
         <script src="js/thongke.js"></script>
+        <script>
+    		// Khởi tạo CKEditor cho textarea có id là "txtnoidung"
+		    CKEDITOR.replace('txtnoidung');
+		</script>
 </html>
