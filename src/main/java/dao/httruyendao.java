@@ -13,7 +13,7 @@ public class httruyendao {
 		//Kết nối vào csdl
 		KetNoidao kn = new KetNoidao();
 		kn.KetNoi();
-		String sql = "select * from V_HTTruyen order by matruyen desc";
+		String sql = "select top 6 * from V_HTTruyen order by matruyen desc";
 		//B3 Tạo câu lệnh
 		PreparedStatement cmd = kn.cn.prepareStatement(sql);
 		//B4. Thực hiện câu lệnh
@@ -63,4 +63,34 @@ public class httruyendao {
         kn.cn.close();
         return truyen;
     }
+
+	public ArrayList<httruyenbean> getNextTop6HTTruỵen(int amount) throws Exception {
+		ArrayList<httruyenbean> ds = new ArrayList<httruyenbean>();
+		//Kết nối vào csdl
+		KetNoidao kn = new KetNoidao();
+		kn.KetNoi();
+		String sql = "select * from V_HTTruyen\r\n"
+				+ "order by matruyen desc\r\n"
+				+ "offset ? rows \r\n"
+				+ "fetch next 6 rows only";
+		//B3 Tạo câu lệnh
+		PreparedStatement cmd = kn.cn.prepareStatement(sql);
+		cmd.setInt(1, amount);
+		//B4. Thực hiện câu lệnh
+		ResultSet rs = cmd.executeQuery();
+		while(rs.next()) {
+			String anh = rs.getString("anh");
+			long matruyen = rs.getLong("matruyen");
+			String tentruyen = rs.getString("tentruyen");
+			String mota = rs.getString("mota");
+			String noidung = rs.getString("noidung");
+			String tentheloai = rs.getString("tentheloai");
+			String tentacgia = rs.getString("tentacgia");
+			long matheloai = rs.getLong("matheloai");
+			ds.add(new httruyenbean(anh, matruyen, tentruyen, mota, noidung, tentheloai, tentacgia, matheloai));
+		}
+		rs.close();
+		kn.cn.close();
+		return ds;
+	}
 }

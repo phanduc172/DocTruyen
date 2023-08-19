@@ -44,4 +44,8 @@ public class httruyenbo {
 			return httdao.getTruyenByMaTruyen(mt);
 		}
 
+		public ArrayList<httruyenbean> getNextTop6HTTruỵen(int amount) throws Exception {
+			return httdao.getNextTop6HTTruỵen(amount);
+		}
+
 }

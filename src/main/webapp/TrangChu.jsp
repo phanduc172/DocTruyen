@@ -201,13 +201,13 @@
 					</div>
 
 	                <h5 class="text-danger fw-bold text-center my-2">Danh sách truyện</h5>
-                    <ul class="row truyen-items" style="list-style: none;">
+                    <ul id="content" class="row truyen-items" style="list-style: none;">
 				    <%
 				    ArrayList<httruyenbean> dshttruyen = (ArrayList)request.getAttribute("dshttruyen");
 				    if (dshttruyen != null && !dshttruyen.isEmpty()) {
 				        for (httruyenbean truyen : dshttruyen) {
 				    %>
-				   		<li class="col col-ms-6 col-md-6 col-lg-4 truyen-item mb-1">
+				   		<li class="httruyen col col-ms-6 col-md-6 col-lg-4 truyen-item mb-1">
 				            <img class="my-1 truyen-img" src="<%= truyen.getAnh() %>" alt="Ảnh truyện">
 				            <div>
 				                <a href="ChiTietTruyenController?mt=<%=truyen.getMatruyen()%>" class="text-decoration-none">
@@ -224,6 +224,9 @@
 				  	  </li>
 				    <% } %>
 				</ul>
+					<div class="text-center mt-3">
+					    <button onclick="xemThem()" class="btn btn-primary">Xem thêm</button>
+					</div>
                 </div>
             </div>
         </div>
@@ -236,5 +239,25 @@
 	   <p class="m-0">Email: <a class="text-decoration-none text-white" href="mailto:20t1020019@husc.edu">20t1020019@husc.edu</a></p>
 	</footer>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		function xemThem() {
+			var amount = document.getElementsByClassName("httruyen").length;
+			$.ajax({
+				  url: "/DocTruyen/XemThemTruyenController",
+				  type: "get",
+				  data: {
+					  exits: amount
+				  },
+				  success: function(data) {
+				    var row = document.getElementById("content");
+				    row.innerHTML += data;
+				  },
+				  error: function(xhr) {
+				    //Do Something to handle error
+				  }
+				});
+		}
+	</script>
 </body>
 </html>
